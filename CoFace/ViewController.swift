@@ -2,10 +2,11 @@
 //  ViewController.swift
 //  CoFace
 //
-//  Created by Timur Misharin on 09/01/2019.
+//  Created by Mor Goren on 09/01/2019.
 //  Copyright © 2019 MorGoren. All rights reserved.
 //
 
+//Mor Goren Unit
 import UIKit
 
 class ViewController: UIViewController {
