@@ -10,11 +10,16 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var forwardButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        forwardButtonSetup()
+        
     }
-
+    private func forwardButtonSetup(){
+        forwardButton.frame.size = CGSize(width: 50, height: 50)
+    }
 
 }
 

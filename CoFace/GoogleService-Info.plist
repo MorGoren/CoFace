@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>966335714311-68g511ik6hc8bh5er85095fdhvlqlvlk.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.966335714311-68g511ik6hc8bh5er85095fdhvlqlvlk</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBS8W3-YbvNIh2yzCDcSn-Da1vvUoWMS40</string>
+	<key>GCM_SENDER_ID</key>
+	<string>966335714311</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>mor8goren-gmail.com.CoFace</string>
+	<key>PROJECT_ID</key>
+	<string>coface-bc37e</string>
+	<key>STORAGE_BUCKET</key>
+	<string>coface-bc37e.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:966335714311:ios:3b5ea586d43ed6b5</string>
+	<key>DATABASE_URL</key>
+	<string>https://coface-bc37e.firebaseio.com</string>
+</dict>
+</plist>
