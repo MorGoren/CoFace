@@ -1,0 +1,6 @@
+framework module Pods_CoFace {
+  umbrella header "Pods-CoFace-umbrella.h"
+
+  export *
+  module * { export * }
+}
