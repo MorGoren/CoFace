@@ -13,14 +13,33 @@ class RoundButton: UIButton{
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.borderWidth = 4/UIScreen.main.nativeScale
+        layer.cornerRadius = frame.height/2
     }
     
+    func changeLook(bool: Bool){
+        if(!bool){
+            firstLook()
+        }
+        if(bool){
+            secondLook()
+        }
+    }
+    
+    private func firstLook(){
+        layer.borderColor = UIColor.white.cgColor
+        layer.backgroundColor = tintColor.cgColor
+        setTitleColor(UIColor.white, for: .normal)
+    }
+    
+    private func secondLook(){
+        layer.borderColor = tintColor.cgColor
+        layer.backgroundColor = UIColor.white.cgColor
+        setTitleColor( self.tintColor, for: .normal)
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
-        layer.cornerRadius = frame.height/2
-        layer.borderColor = isEnabled ? tintColor.cgColor : UIColor.lightGray.cgColor
-        layer.backgroundColor = isEnabled ? UIColor.white.cgColor : UIColor.clear.cgColor
     }
+    
 }
 
 

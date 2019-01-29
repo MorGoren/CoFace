@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RoundTextField : UITextView {
+class RoundTextField : UITextField {
     
     override func awakeFromNib() {
         super.awakeFromNib()
