@@ -17,10 +17,10 @@ class RoundButton: UIButton{
     }
     
     func changeLook(bool: Bool){
-        if(!bool){
+        if(bool){
             firstLook()
         }
-        if(bool){
+        if(!bool){
             secondLook()
         }
     }
@@ -36,10 +36,10 @@ class RoundButton: UIButton{
         layer.backgroundColor = UIColor.white.cgColor
         setTitleColor( self.tintColor, for: .normal)
     }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-    
 }
 
 

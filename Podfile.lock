@@ -74,6 +74,7 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
+  - RNCryptor (5.0.3)
 
 DEPENDENCIES:
   - CryptoSwift
@@ -81,6 +82,7 @@ DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
+  - RNCryptor (~> 5.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -98,6 +100,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - leveldb-library
     - nanopb
+    - RNCryptor
 
 SPEC CHECKSUMS:
   CryptoSwift: ff68c35a53e03177d31aaa2c1e8b3e010aeed6cb
@@ -114,7 +117,8 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 32aeca0aa144acea523e1c8e053089dec2cb98ca
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  RNCryptor: c93d19029dcf7ff160aca0f24d6c9e7b0d82f664
 
-PODFILE CHECKSUM: bc57552bf73f432879976b82a4c309a14a2dcc13
+PODFILE CHECKSUM: 1a5a087fa41ef6cc5ae09df14083cca104318ccb
 
 COCOAPODS: 1.5.3

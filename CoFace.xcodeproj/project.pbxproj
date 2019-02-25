@@ -7,12 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2402A5AE22035A0A000C466C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2402A5AD22035A0A000C466C /* GoogleService-Info.plist */; };
+		2402A5B622035F03000C466C /* SignUpUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402A5B522035F03000C466C /* SignUpUITest.swift */; };
+		2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438AA25220C29ED0091310D /* MainNavigationController.swift */; };
+		24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24510F8C2208DEAC008178BC /* AddGuessViewController.swift */; };
 		2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480D76A21E610F800FCCB93 /* AppDelegate.swift */; };
 		2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480D76C21E610F800FCCB93 /* ViewController.swift */; };
 		2480D77021E610F800FCCB93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480D76E21E610F800FCCB93 /* Main.storyboard */; };
 		2480D77221E610FA00FCCB93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2480D77121E610FA00FCCB93 /* Assets.xcassets */; };
 		2480D77521E610FA00FCCB93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480D77321E610FA00FCCB93 /* LaunchScreen.storyboard */; };
-		24E0D37321FB2F2600A2263A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37221FB2F2600A2263A /* GoogleService-Info.plist */; };
+		249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */; };
+		24A0C97B220CE57C00EF47B8 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */; };
+		24AC06F4220B07DD00333ACB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */; };
+		24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC06F5220B136000333ACB /* GuestListViewController.swift */; };
+		24D8857E22200DD8001A402B /* BranchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D8857D22200DD8001A402B /* BranchData.swift */; };
 		24E0D37921FB505F00A2263A /* dorianclm-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */; };
 		24E0D37A21FB505F00A2263A /* maklot_ez.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37721FB41FA00A2263A /* maklot_ez.ttf */; };
 		24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0D37B21FD0F0C00A2263A /* RoundButton.swift */; };
@@ -20,7 +28,23 @@
 		D0C7888F3F6BBBC59EE41D84 /* Pods_CoFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9123BF664143E60D068BEF25 /* Pods_CoFace.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2402A5B822035F03000C466C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2480D75F21E610F800FCCB93 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2480D76621E610F800FCCB93;
+			remoteInfo = CoFace;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2402A5AD22035A0A000C466C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Desktop/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		2402A5B322035F03000C466C /* SignUpUITest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignUpUITest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2402A5B522035F03000C466C /* SignUpUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUITest.swift; sourceTree = "<group>"; };
+		2402A5B722035F03000C466C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2438AA25220C29ED0091310D /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
+		24510F8C2208DEAC008178BC /* AddGuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuessViewController.swift; sourceTree = "<group>"; };
 		2480D76721E610F800FCCB93 /* CoFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2480D76A21E610F800FCCB93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480D76C21E610F800FCCB93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -28,7 +52,11 @@
 		2480D77121E610FA00FCCB93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2480D77421E610FA00FCCB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2480D77621E610FA00FCCB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		24E0D37221FB2F2600A2263A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerMenueViewController.swift; sourceTree = "<group>"; };
+		24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
+		24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		24AC06F5220B136000333ACB /* GuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListViewController.swift; sourceTree = "<group>"; };
+		24D8857D22200DD8001A402B /* BranchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchData.swift; sourceTree = "<group>"; };
 		24E0D37721FB41FA00A2263A /* maklot_ez.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = maklot_ez.ttf; sourceTree = "<group>"; };
 		24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dorianclm-book-webfont.ttf"; sourceTree = "<group>"; };
 		24E0D37B21FD0F0C00A2263A /* RoundButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundButton.swift; sourceTree = "<group>"; };
@@ -39,6 +67,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2402A5B022035F03000C466C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2480D76421E610F800FCCB93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,10 +85,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2402A5B422035F03000C466C /* SignUpUITest */ = {
+			isa = PBXGroup;
+			children = (
+				2402A5B522035F03000C466C /* SignUpUITest.swift */,
+				2402A5B722035F03000C466C /* Info.plist */,
+			);
+			path = SignUpUITest;
+			sourceTree = "<group>";
+		};
+		24297C252207919E0081012A /* ViewControllersCode */ = {
+			isa = PBXGroup;
+			children = (
+				2480D76C21E610F800FCCB93 /* ViewController.swift */,
+				24510F8C2208DEAC008178BC /* AddGuessViewController.swift */,
+				24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */,
+				249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */,
+				24AC06F5220B136000333ACB /* GuestListViewController.swift */,
+				2438AA25220C29ED0091310D /* MainNavigationController.swift */,
+				24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */,
+				24D8857D22200DD8001A402B /* BranchData.swift */,
+			);
+			path = ViewControllersCode;
+			sourceTree = "<group>";
+		};
 		2480D75E21E610F800FCCB93 = {
 			isa = PBXGroup;
 			children = (
 				2480D76921E610F800FCCB93 /* CoFace */,
+				2402A5B422035F03000C466C /* SignUpUITest */,
 				2480D76821E610F800FCCB93 /* Products */,
 				D6A2BD228BD3E5A75C93B73A /* Pods */,
 				67517C37E538604325297DF9 /* Frameworks */,
@@ -64,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2480D76721E610F800FCCB93 /* CoFace.app */,
+				2402A5B322035F03000C466C /* SignUpUITest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -71,14 +132,14 @@
 		2480D76921E610F800FCCB93 /* CoFace */ = {
 			isa = PBXGroup;
 			children = (
+				24297C252207919E0081012A /* ViewControllersCode */,
 				24E0D37621FB41CB00A2263A /* Fonts */,
 				2480D76A21E610F800FCCB93 /* AppDelegate.swift */,
-				2480D76C21E610F800FCCB93 /* ViewController.swift */,
 				2480D76E21E610F800FCCB93 /* Main.storyboard */,
 				2480D77121E610FA00FCCB93 /* Assets.xcassets */,
+				2402A5AD22035A0A000C466C /* GoogleService-Info.plist */,
 				2480D77321E610FA00FCCB93 /* LaunchScreen.storyboard */,
 				2480D77621E610FA00FCCB93 /* Info.plist */,
-				24E0D37221FB2F2600A2263A /* GoogleService-Info.plist */,
 				24E0D37B21FD0F0C00A2263A /* RoundButton.swift */,
 				24E0D37D21FDABF200A2263A /* RoundTextField.swift */,
 			);
@@ -114,6 +175,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2402A5B222035F03000C466C /* SignUpUITest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2402A5BA22035F03000C466C /* Build configuration list for PBXNativeTarget "SignUpUITest" */;
+			buildPhases = (
+				2402A5AF22035F03000C466C /* Sources */,
+				2402A5B022035F03000C466C /* Frameworks */,
+				2402A5B122035F03000C466C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2402A5B922035F03000C466C /* PBXTargetDependency */,
+			);
+			name = SignUpUITest;
+			productName = SignUpUITest;
+			productReference = 2402A5B322035F03000C466C /* SignUpUITest.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		2480D76621E610F800FCCB93 /* CoFace */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2480D77921E610FA00FCCB93 /* Build configuration list for PBXNativeTarget "CoFace" */;
@@ -143,6 +222,10 @@
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = MorGoren;
 				TargetAttributes = {
+					2402A5B222035F03000C466C = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 2480D76621E610F800FCCB93;
+					};
 					2480D76621E610F800FCCB93 = {
 						CreatedOnToolsVersion = 10.1;
 					};
@@ -162,11 +245,19 @@
 			projectRoot = "";
 			targets = (
 				2480D76621E610F800FCCB93 /* CoFace */,
+				2402A5B222035F03000C466C /* SignUpUITest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2402A5B122035F03000C466C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2480D76521E610F800FCCB93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,9 +265,9 @@
 				24E0D37921FB505F00A2263A /* dorianclm-book-webfont.ttf in Resources */,
 				24E0D37A21FB505F00A2263A /* maklot_ez.ttf in Resources */,
 				2480D77521E610FA00FCCB93 /* LaunchScreen.storyboard in Resources */,
-				24E0D37321FB2F2600A2263A /* GoogleService-Info.plist in Resources */,
 				2480D77221E610FA00FCCB93 /* Assets.xcassets in Resources */,
 				2480D77021E610F800FCCB93 /* Main.storyboard in Resources */,
+				2402A5AE22035A0A000C466C /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +286,7 @@
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/RNCryptor/RNCryptor.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -205,6 +297,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNCryptor.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -238,18 +331,41 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2402A5AF22035F03000C466C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2402A5B622035F03000C466C /* SignUpUITest.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2480D76321E610F800FCCB93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */,
 				24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */,
+				24D8857E22200DD8001A402B /* BranchData.swift in Sources */,
+				24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */,
 				24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */,
+				24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */,
+				24AC06F4220B07DD00333ACB /* CollectionViewCell.swift in Sources */,
+				24A0C97B220CE57C00EF47B8 /* PopUpViewController.swift in Sources */,
 				2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */,
+				249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */,
 				2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2402A5B922035F03000C466C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2480D76621E610F800FCCB93 /* CoFace */;
+			targetProxy = 2402A5B822035F03000C466C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2480D76E21E610F800FCCB93 /* Main.storyboard */ = {
@@ -271,6 +387,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2402A5BB22035F03000C466C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H2XNT2P55C;
+				INFOPLIST_FILE = SignUpUITest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "mor8goren-gmail.com.SignUpUITest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CoFace;
+			};
+			name = Debug;
+		};
+		2402A5BC22035F03000C466C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = H2XNT2P55C;
+				INFOPLIST_FILE = SignUpUITest/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "mor8goren-gmail.com.SignUpUITest";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CoFace;
+			};
+			name = Release;
+		};
 		2480D77721E610FA00FCCB93 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -428,6 +582,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2402A5BA22035F03000C466C /* Build configuration list for PBXNativeTarget "SignUpUITest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2402A5BB22035F03000C466C /* Debug */,
+				2402A5BC22035F03000C466C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		2480D76221E610F800FCCB93 /* Build configuration list for PBXProject "CoFace" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
