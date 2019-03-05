@@ -15,8 +15,6 @@ class addGuessViewController: UIViewController, SourceProtocol {
     var userEmail: String!
     var ProtocolMess: String!
     var ImagePicker:  UIImagePickerController!
-    var timer: Timer!
-    var branchId: String!
     @IBOutlet weak var BackgroundImage: UIImageView!
     @IBOutlet weak var FirstNameTextField: RoundTextField!
     @IBOutlet weak var LastNameTextFielld: RoundTextField!
@@ -33,13 +31,8 @@ class addGuessViewController: UIViewController, SourceProtocol {
             let firstName = FirstNameTextField.text
             let lastName =  LastNameTextFielld.text
             let eye = EyeMonitorSwitch.isOn
-            let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye monitor" : eye]
-            do {
-                BranchData.shared.addGuest(guest: guest, image: ImagePickButton.currentImage!)
-            }
-            catch {
-                print("error")
-            }
+            let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye" : eye]
+            BranchData.shared.addGuest(guest: guest, image: ImagePickButton.currentImage!)
             self.navigationController?.popViewController(animated: true)
         }
         else{

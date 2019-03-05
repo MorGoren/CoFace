@@ -16,9 +16,11 @@
 		2480D77021E610F800FCCB93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480D76E21E610F800FCCB93 /* Main.storyboard */; };
 		2480D77221E610FA00FCCB93 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2480D77121E610FA00FCCB93 /* Assets.xcassets */; };
 		2480D77521E610FA00FCCB93 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480D77321E610FA00FCCB93 /* LaunchScreen.storyboard */; };
+		2485F256222D40C000B48A3E /* UICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485F255222D40C000B48A3E /* UICell.swift */; };
+		2485F258222D47BE00B48A3E /* CollectionFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485F257222D47BE00B48A3E /* CollectionFlowLayout.swift */; };
+		2485F261222D7CA300B48A3E /* guestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485F260222D7CA300B48A3E /* guestData.swift */; };
 		249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */; };
 		24A0C97B220CE57C00EF47B8 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */; };
-		24AC06F4220B07DD00333ACB /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */; };
 		24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC06F5220B136000333ACB /* GuestListViewController.swift */; };
 		24D8857E22200DD8001A402B /* BranchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D8857D22200DD8001A402B /* BranchData.swift */; };
 		24E0D37921FB505F00A2263A /* dorianclm-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */; };
@@ -52,9 +54,13 @@
 		2480D77121E610FA00FCCB93 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2480D77421E610FA00FCCB93 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2480D77621E610FA00FCCB93 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2485F255222D40C000B48A3E /* UICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UICell.swift; sourceTree = "<group>"; };
+		2485F257222D47BE00B48A3E /* CollectionFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFlowLayout.swift; sourceTree = "<group>"; };
+		2485F259222D67CC00B48A3E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Main.strings; sourceTree = "<group>"; };
+		2485F25A222D67CD00B48A3E /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		2485F260222D7CA300B48A3E /* guestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestData.swift; sourceTree = "<group>"; };
 		249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerMenueViewController.swift; sourceTree = "<group>"; };
 		24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
-		24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		24AC06F5220B136000333ACB /* GuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListViewController.swift; sourceTree = "<group>"; };
 		24D8857D22200DD8001A402B /* BranchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchData.swift; sourceTree = "<group>"; };
 		24E0D37721FB41FA00A2263A /* maklot_ez.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = maklot_ez.ttf; sourceTree = "<group>"; };
@@ -97,14 +103,18 @@
 		24297C252207919E0081012A /* ViewControllersCode */ = {
 			isa = PBXGroup;
 			children = (
+				24E0D37B21FD0F0C00A2263A /* RoundButton.swift */,
 				2480D76C21E610F800FCCB93 /* ViewController.swift */,
 				24510F8C2208DEAC008178BC /* AddGuessViewController.swift */,
-				24AC06F3220B07DD00333ACB /* CollectionViewCell.swift */,
 				249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */,
 				24AC06F5220B136000333ACB /* GuestListViewController.swift */,
+				24E0D37D21FDABF200A2263A /* RoundTextField.swift */,
 				2438AA25220C29ED0091310D /* MainNavigationController.swift */,
 				24A0C97A220CE57C00EF47B8 /* PopUpViewController.swift */,
 				24D8857D22200DD8001A402B /* BranchData.swift */,
+				2485F255222D40C000B48A3E /* UICell.swift */,
+				2485F257222D47BE00B48A3E /* CollectionFlowLayout.swift */,
+				2485F260222D7CA300B48A3E /* guestData.swift */,
 			);
 			path = ViewControllersCode;
 			sourceTree = "<group>";
@@ -140,8 +150,6 @@
 				2402A5AD22035A0A000C466C /* GoogleService-Info.plist */,
 				2480D77321E610FA00FCCB93 /* LaunchScreen.storyboard */,
 				2480D77621E610FA00FCCB93 /* Info.plist */,
-				24E0D37B21FD0F0C00A2263A /* RoundButton.swift */,
-				24E0D37D21FDABF200A2263A /* RoundTextField.swift */,
 			);
 			path = CoFace;
 			sourceTree = "<group>";
@@ -344,12 +352,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */,
+				2485F261222D7CA300B48A3E /* guestData.swift in Sources */,
 				24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */,
 				24D8857E22200DD8001A402B /* BranchData.swift in Sources */,
+				2485F258222D47BE00B48A3E /* CollectionFlowLayout.swift in Sources */,
 				24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */,
 				24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */,
+				2485F256222D40C000B48A3E /* UICell.swift in Sources */,
 				24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */,
-				24AC06F4220B07DD00333ACB /* CollectionViewCell.swift in Sources */,
 				24A0C97B220CE57C00EF47B8 /* PopUpViewController.swift in Sources */,
 				2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */,
 				249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */,
@@ -372,6 +382,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2480D76F21E610F800FCCB93 /* Base */,
+				2485F259222D67CC00B48A3E /* he */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -380,6 +391,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				2480D77421E610FA00FCCB93 /* Base */,
+				2485F25A222D67CD00B48A3E /* he */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -429,6 +441,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -490,6 +503,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

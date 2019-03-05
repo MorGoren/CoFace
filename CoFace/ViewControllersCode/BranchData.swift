@@ -13,23 +13,29 @@ import FirebaseStorage
 
 //used like singelton
 
+enum FirebaseError: Error{
+    case FailToAdd
+    case FailToEdit
+    case FailToGet
+}
+
 class BranchData {
     
     static let shared = BranchData()
     var branch: String!
     var databaseRef : DatabaseReference!
+    var storageRef : StorageReference!
     var flag = false
+    var guestInfo : Any!
     
     func getID(email: String){
-        let group = DispatchGroup()
-        group.enter()
         databaseRef = Database.database().reference()
         databaseRef.root.child("Branches").observe(.value, with: { (snapshot) in
             if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
-                print(snapshot)
+                //print(snapshot)
                 let child = snapshot.value as! [String: [String : String]]
-                print(child)
-                print("unwrap email", email)
+                //print(child)
+                //print("unwrap email", email)
                 for (key, data) in child{
                     for (k, d) in data{
                         if k == "Email" && d == email {
@@ -42,14 +48,16 @@ class BranchData {
             }
         })
     }
+    
      //image: UIImage
     func addGuest(guest: [String : Any], image: UIImage){
-        let uid = databaseRef.child("Guest/\(branch ?? "defult")").childByAutoId().key!
-        print("uiddddd", uid)
-        UploadGuestImage(folder: "GuestImages",uid: uid, image)
-        databaseRef.child("Guest/\(branch ?? "defult")").child(uid).setValue(guest)
+        guard let uid = databaseRef.child("Guest/\(branch ?? "defult")").childByAutoId().key else {return}
+        var guests : [String : Any] = ["first name": guest["first name"]!, "last name" : guest["last name"]! , "eye" : guest["eye"]!]
         
-        //uid.setValue(guest)
+        UploadImage(folder: "GuestImages",uid: uid, image){ url in
+            guests["photoURL"] = url
+            self.databaseRef.child("Guest/\(self.branch ?? "defult")").child(uid).setValue(guests)
+        }
     }
     
     func addCategory(category: String){
@@ -57,6 +65,25 @@ class BranchData {
     }
     
     func addItem(item: Any){
+        
+    }
+    
+    func getGuestList(completion: @escaping ((_ guestsInfo: [String: [String : Any]]?)->())){
+        databaseRef = Database.database().reference()
+        print("branch", self.branch)
+        databaseRef.root.child("Guest").child(branch).observe(.value, with: { (snapshot) in
+            if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
+                print(snapshot)
+                let child = snapshot.value as! [String: [String : Any]]
+                if !child.isEmpty {
+                    completion(child)
+                }
+               else{
+                completion(nil)
+                }
+                
+            }
+        })
         
     }
     
@@ -68,23 +95,26 @@ class BranchData {
         }
         return first.value as! String
     }
-    
-    func unwrap2(){
-        if !flag{
-            branch = unwrap(branch)
-        }
-    }
-    
-    func UploadGuestImage(folder: String,uid: String, _ image: UIImage) {
-        let storageRef = Storage.storage().reference().child(folder).child(branch).child(uid)
+
+    private func UploadImage(folder: String,uid: String, _ image: UIImage, completion: @escaping ((_ url: String?)->())) {
+        storageRef = Storage.storage().reference().child(folder).child(branch).child(uid)
         guard let imageData = image.jpegData(compressionQuality: 0.75) else {return}
         storageRef.putData(imageData, metadata: nil, completion: { (metaData, error) in
-            if error != nil {
-                print(error)
-                return
+            if error == nil && metaData != nil{
+                //succsess to upload to storage
+                self.storageRef.downloadURL(completion: { (url, error) in
+                    if let url = url {
+                        completion(url.absoluteString)
+                    }
+                    else {
+                        completion(nil)
+                    }
+                })
             }
-            print(metaData)
-            
+            else {
+                // failed to upload to storage
+                completion(nil)
+            }
         })
     }
 }

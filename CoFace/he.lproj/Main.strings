@@ -1,0 +1,57 @@
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "12D-cZ-DyP"; */
+"12D-cZ-DyP.placeholder" = "Password";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "1kB-eL-JdF"; */
+"1kB-eL-JdF.placeholder" = "Confirm Password";
+
+/* Class = "UILabel"; text = "הקש לבחירת תמונה"; ObjectID = "22a-rm-a34"; */
+"22a-rm-a34.text" = "הקש לבחירת תמונה";
+
+/* Class = "UITextField"; placeholder = "First Name"; ObjectID = "7LH-dJ-XBu"; */
+"7LH-dJ-XBu.placeholder" = "First Name";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "HKM-e4-Hra"; */
+"HKM-e4-Hra.placeholder" = "Email";
+
+/* Class = "UIButton"; normalTitle = "Sign UP"; ObjectID = "JTp-5U-FRy"; */
+"JTp-5U-FRy.normalTitle" = "Sign UP";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "LKo-OL-JOC"; */
+"LKo-OL-JOC.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "גלריה"; ObjectID = "LgY-8z-wmY"; */
+"LgY-8z-wmY.text" = "גלריה";
+
+/* Class = "UIViewController"; title = "AddGuess"; ObjectID = "LhB-oZ-c7M"; */
+"LhB-oZ-c7M.title" = "AddGuess";
+
+/* Class = "UITextField"; placeholder = "Last Name"; ObjectID = "N9e-bn-Oea"; */
+"N9e-bn-Oea.placeholder" = "Last Name";
+
+/* Class = "UIButton"; normalTitle = "Log In "; ObjectID = "OXC-cY-RQK"; */
+"OXC-cY-RQK.normalTitle" = "Log In ";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "U5w-My-fXe"; */
+"U5w-My-fXe.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UB0-Qa-miF"; */
+"UB0-Qa-miF.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Wtn-da-PuT"; */
+"Wtn-da-PuT.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Zxn-Jx-Dc1"; */
+"Zxn-Jx-Dc1.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ar3-k5-zSS"; */
+"ar3-k5-zSS.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Eye- Monitor?"; ObjectID = "rKv-MD-lE3"; */
+"rKv-MD-lE3.text" = "Eye- Monitor?";
+
+/* Class = "UILabel"; text = "מצלמה"; ObjectID = "rVv-rn-ci4"; */
+"rVv-rn-ci4.text" = "מצלמה";
+
+/* Class = "UITextField"; placeholder = "City"; ObjectID = "xj9-Zw-2Ek"; */
+"xj9-Zw-2Ek.placeholder" = "City";

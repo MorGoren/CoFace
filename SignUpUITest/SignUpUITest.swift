@@ -38,6 +38,9 @@ class SignUpUITest: XCTestCase {
         pass.tap()
         pass.typeText("ovgu1948")
         app.buttons["login"].tap()
+        
+
+        
                                 
     }
 

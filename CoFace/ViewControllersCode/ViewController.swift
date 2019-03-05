@@ -26,6 +26,7 @@ class ViewController: UIViewController{
     @IBOutlet weak var SignInArrowButton: UIButton!
     @IBOutlet weak var ShowHideCPasswordButton: UIButton!
     @IBOutlet weak var ShowHidePassButton: UIButton!
+    @IBOutlet weak var Activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class ViewController: UIViewController{
         ModeChange(mode: mode)
         WarningLableSetup()
         BackgraoundSetup()
-        
+        Activity.isHidden = true
     }
     
     @IBAction func LogInButtonAction(_ sender: Any) {
@@ -67,21 +68,32 @@ class ViewController: UIViewController{
         if mode == "signup"{
             if CheckSignUp(){
                 if SignUp(){
-                print("email", EmailTextField.text)
+                //print("email", EmailTextField.text)
                 BranchData.shared.getID(email: EmailTextField.text ?? "defult")
-                NavigateToManagerMenu()
             }
         }
         }
         if mode == "login"{
             if CheckLogin(){
                 if LogIn(){
-                print("email", EmailTextField.text)
+                //print("email", EmailTextField.text)
                 BranchData.shared.getID(email: EmailTextField.text ?? "defult")
-                NavigateToManagerMenu()
             }
             }
         }
+        
+        if Activity.isAnimating != true{
+            blurdView()
+            Activity.startAnimating()
+            Activity.isHidden = false
+        }
+        print(BranchData.shared.branch)
+        NavigateToManagerMenu()
+        
+       /* if BranchData.shared.branch != nil {
+            Activity.stopAnimating()
+            Activity.isHidden = true
+        }*/
     }
     
     private func NavigateToManagerMenu(){
@@ -89,9 +101,7 @@ class ViewController: UIViewController{
         guard let MainNavigationVC = MainStoryboard.instantiateViewController(withIdentifier: "MianNavigationController") as? MainNavigationController else{return}
         print("topviewcontroller", MainNavigationVC.topViewController!)
         print("viewControllers", MainNavigationVC.viewControllers)
-        if let mainVC = MainNavigationVC.topViewController as? ManagerMenue {
-            mainVC.userEmail = EmailTextField.text
-        }
+        MainNavigationVC.topViewController
         present(MainNavigationVC, animated: true, completion: nil)
     }
     
@@ -137,38 +147,43 @@ class ViewController: UIViewController{
     }
     
     private func CheckLogin() -> Bool{
+        var flag = true
         if WhatEmpty() {
-            LogIn()
-            return true
+            flag = LogIn()
+                
         }
         else{
             WarningLable.isHidden = false
-            return false
+            flag = false
         }
+        return flag
     }
     
     private func CheckSignUp() -> Bool{
+        var flag = true
         if SWhatEmpty(){
             if (EmailTextField.text?.isValidEmail())!{
                 if ConfriemPasswords(){
-                    SignUp()
-                    return true
+                    if SignUp(){
+                        flag = true
+                    }
                 }
                 else{
                     WarningLable.isHidden = false
-                    return false
+                    flag = false
                 }
             }
             else{
-                    WarningLable.text = "Not a valid Email"
+                WarningLable.text = "Not a valid Email"
                 WarningLable.isHidden = false
-                return false
+                flag = false
             }
         }
         else{
             WarningLable.isHidden = false
-            return false
+            flag = false
         }
+        return flag
     }
     
     private func WhatEmpty()-> Bool{
@@ -263,6 +278,16 @@ class ViewController: UIViewController{
         else{
         BackgraoundImage.frame = CGRect(x: 0, y: 0, width: 2*(UIScreen.main.bounds.width/3), height: UIScreen.main.bounds.height)
         }
+        
+    }
+    
+    private func blurdView(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.alpha = 0.7
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
