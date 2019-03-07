@@ -11,31 +11,32 @@ import FirebaseDatabase
 
 struct guestData {
     
-    let cid: String?
-    let eye: String!
-    let first: String!
-    let last: String!
-    let image: String!
-    let guestRef : DatabaseReference!
-    
-    init(cid: String, eye: String, first: String, last: String, image: String){
+    var cid: String?
+    var eye: Int!
+    var first: String!
+    var last: String!
+    var image: String!
+    var guestRef : DatabaseReference!
+ 
+    init(cid: String, eye: Int, first: String, last: String, image: String){
         self.cid = cid
         self.eye = eye
         self.first = first
         self.last = last
-        self.image = image
         self.guestRef = nil
+        self.image = image
     }
     
     init(snapshot: DataSnapshot){
         guestRef = snapshot.ref
-        
-        let snapshotValue = snapshot.value as! [String: String]
-        
-        cid = snapshot.key
-        eye = snapshotValue["eye"]
-        first = snapshotValue["last name"]
-        last = snapshotValue["first name"]
-        image = snapshotValue["photoURL"]
+       //print("SnapShot", snapshot.key)
+        //print("SnapShot", snapshot)
+        self.cid = snapshot.key
+        let snapshotValue = snapshot.value as? [String: Any]
+        //print("SnapShotValue", snapshotValue)
+        self.eye = snapshotValue?["eye"] as? Int
+        self.first = snapshotValue?["last name"] as? String
+        self.last = snapshotValue?["first name"] as? String
+        self.image = snapshotValue?["photoURL"] as? String
     }
 }

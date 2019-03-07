@@ -12,5 +12,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Storage'
 pod 'CryptoSwift'
 pod 'RNCryptor', '~> 5.0'
+pod 'SDWebImage/WebP'
+
 end
 

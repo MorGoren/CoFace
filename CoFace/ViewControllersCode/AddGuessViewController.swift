@@ -33,7 +33,7 @@ class addGuessViewController: UIViewController, SourceProtocol {
             let eye = EyeMonitorSwitch.isOn
             let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye" : eye]
             BranchData.shared.addGuest(guest: guest, image: ImagePickButton.currentImage!)
-            self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
         }
         else{
             WarningLable.isEnabled = true

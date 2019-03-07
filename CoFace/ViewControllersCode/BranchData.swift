@@ -23,13 +23,12 @@ class BranchData {
     
     static let shared = BranchData()
     var branch: String!
-    var databaseRef : DatabaseReference!
-    var storageRef : StorageReference!
+    var databaseRef = Database.database().reference()
+    var storageRef = Storage.storage().reference()
     var flag = false
     var guestInfo : Any!
     
     func getID(email: String){
-        databaseRef = Database.database().reference()
         databaseRef.root.child("Branches").observe(.value, with: { (snapshot) in
             if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
                 //print(snapshot)
@@ -47,6 +46,7 @@ class BranchData {
                 print("child", child)*/
             }
         })
+        sleep(1)
     }
     
      //image: UIImage
@@ -68,25 +68,6 @@ class BranchData {
         
     }
     
-    func getGuestList(completion: @escaping ((_ guestsInfo: [String: [String : Any]]?)->())){
-        databaseRef = Database.database().reference()
-        print("branch", self.branch)
-        databaseRef.root.child("Guest").child(branch).observe(.value, with: { (snapshot) in
-            if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
-                print(snapshot)
-                let child = snapshot.value as! [String: [String : Any]]
-                if !child.isEmpty {
-                    completion(child)
-                }
-               else{
-                completion(nil)
-                }
-                
-            }
-        })
-        
-    }
-    
     private func unwrap<T>(_ any: T) -> String
     {
         let mirror = Mirror(reflecting: any)
@@ -95,7 +76,19 @@ class BranchData {
         }
         return first.value as! String
     }
-
+    
+    func removeGuest(cid: String, url: URL){
+        let store = Storage.storage().reference(withPath: "Guest/\(branch ?? "defult")/\(cid)")
+        store.delete(completion: {error in
+            if let error = error{
+                print("faild", error)
+            }
+            else{
+                print("success")
+            }
+        })
+        databaseRef.child("Guest/\(branch ?? "defult")/\(cid)").removeValue()
+    }
     private func UploadImage(folder: String,uid: String, _ image: UIImage, completion: @escaping ((_ url: String?)->())) {
         storageRef = Storage.storage().reference().child(folder).child(branch).child(uid)
         guard let imageData = image.jpegData(compressionQuality: 0.75) else {return}

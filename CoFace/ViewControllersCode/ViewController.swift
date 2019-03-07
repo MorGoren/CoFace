@@ -73,12 +73,15 @@ class ViewController: UIViewController{
             }
         }
         }
-        if mode == "login"{
-            if CheckLogin(){
-                if LogIn(){
-                //print("email", EmailTextField.text)
-                BranchData.shared.getID(email: EmailTextField.text ?? "defult")
-            }
+        if mode == "login" {
+            CheckLogin() { check in
+                if check == true{
+                    BranchData.shared.getID(email: self.EmailTextField.text ?? "defult")
+                }
+                else {
+                    self.WarningLable.text = "oop! something not right"
+                    self.WarningLable.isHidden = false
+                }
             }
         }
         
@@ -89,19 +92,12 @@ class ViewController: UIViewController{
         }
         print(BranchData.shared.branch)
         NavigateToManagerMenu()
-        
-       /* if BranchData.shared.branch != nil {
-            Activity.stopAnimating()
-            Activity.isHidden = true
-        }*/
     }
     
     private func NavigateToManagerMenu(){
         let MainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
         guard let MainNavigationVC = MainStoryboard.instantiateViewController(withIdentifier: "MianNavigationController") as? MainNavigationController else{return}
-        print("topviewcontroller", MainNavigationVC.topViewController!)
-        print("viewControllers", MainNavigationVC.viewControllers)
-        MainNavigationVC.topViewController
+        //MainNavigationVC.topViewController
         present(MainNavigationVC, animated: true, completion: nil)
     }
     
@@ -146,17 +142,15 @@ class ViewController: UIViewController{
         }
     }
     
-    private func CheckLogin() -> Bool{
-        var flag = true
+    private func CheckLogin(completion : @escaping ((_ check: Bool?)->())){
         if WhatEmpty() {
-            flag = LogIn()
-                
+            LogIn(){ check in
+                    completion(check)
+            }
         }
         else{
             WarningLable.isHidden = false
-            flag = false
         }
-        return flag
     }
     
     private func CheckSignUp() -> Bool{
@@ -255,20 +249,17 @@ class ViewController: UIViewController{
         return true
     }
     
-    private func LogIn() -> Bool{
-        var flag = true
-        guard let email = EmailTextField.text else {return false}
-        guard let password = PasswordTextField.text else {return false}
-        Auth.auth().signIn(withEmail: email, password: password) { user, error in
+    private func LogIn(completion: @escaping ((_ check: Bool?)->())){
+        let email = EmailTextField.text
+        let password = PasswordTextField.text
+        Auth.auth().signIn(withEmail: email ?? "defult", password: password ?? "defult") { user, error in
             if user != nil && error == nil {
-                //self.dismiss(animated: false, completion: nil)
+                    completion(true)
             }
             else{
-                print ("Log in error")
-                flag = false
+                completion(false)
             }
         }
-        return flag
     }
     
     private func BackgraoundSetup(){

@@ -29,8 +29,8 @@ class CollectionFlowLayout: UICollectionViewFlowLayout {
         }
     }
     func setUpLayout(){
-        minimumInteritemSpacing = 20
-        minimumLineSpacing = 20
+        minimumInteritemSpacing = 1
+        minimumLineSpacing = 1
         scrollDirection = .vertical
     }
 }
