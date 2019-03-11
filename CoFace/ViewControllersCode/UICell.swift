@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol cellDelegate: class{
+protocol cellDeleteDelegate: class{
     func delete(cell: UICell)
 }
 class UICell: UICollectionViewCell {
@@ -19,10 +19,10 @@ class UICell: UICollectionViewCell {
     @IBOutlet weak var firstNameLabel: UILabel!
     @IBOutlet weak var lastNameLabel: UILabel!
     @IBOutlet weak var eyeImage: UIImageView!
-    weak var delegate: cellDelegate?
+    weak var delegateDelete: cellDeleteDelegate?
     
     @IBAction func trashButton(_ sender: Any) {
-            delegate?.delete(cell: self)
+            delegateDelete?.delete(cell: self)
     }
     
     @IBAction func editButton(_ sender: Any) {
@@ -37,5 +37,14 @@ class UICell: UICollectionViewCell {
         self.eyeImage = nil
         self.cid = nil
         self.imageURL = nil
+    }
+    
+    func printCell(){
+        print("self.image",self.image,
+            "self.firstNameLabel", self.firstNameLabel,
+            "self.lastNameLabel", self.lastNameLabel,
+            "self.eyeImage", self.eyeImage,
+            "self.cid", self.cid,
+            "self.imageURL", self.imageURL)
     }
 }

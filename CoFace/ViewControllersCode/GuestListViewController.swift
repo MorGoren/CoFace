@@ -14,8 +14,7 @@ import SDWebImage
 class GuestListViewController: UIViewController, UICollectionViewDataSource{
     
     var flowLayout: CollectionFlowLayout!
-    var guest = [guestData]()
-    var image = [UIImage]()
+    var guests : [guestData]!
     var databaseRef : DatabaseReference!
     @IBOutlet weak var collection: UICollectionView!
     
@@ -26,33 +25,23 @@ class GuestListViewController: UIViewController, UICollectionViewDataSource{
         databaseRef = Database.database().reference().child("Guest")
         flowLayout = CollectionFlowLayout()
         collection.collectionViewLayout = flowLayout
-        loadData()
-    }
+        guests = BranchData.shared.guestInfo
+        collection?.reloadData()
+        }
     
-    /* override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated) 
         databaseRef = Database.database().reference().child("Guest")
         flowLayout = CollectionFlowLayout()
         collection.collectionViewLayout = flowLayout
-        loadData()
-    }*/
-    
-    private func loadData(){
-        guard BranchData.shared.branch != nil  else { print("branch is nil"); return }
-        databaseRef.child(BranchData.shared.branch).observe(.value, with: { snapshot in
-            var newGuest = [guestData]()
-            for g in snapshot.children {
-                let gu = guestData(snapshot: g as! DataSnapshot)
-                newGuest.append(gu)
-                print("guuu", gu)
-            }
-            self.guest = newGuest
-            self.collection.reloadData()
-        })
+        guests = []
+        guests = BranchData.shared.guestInfo
+        print("viewWillApear guests", guests)
+        collection?.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return guest.count
+        return guests.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -60,30 +49,33 @@ class GuestListViewController: UIViewController, UICollectionViewDataSource{
         cell.layer.borderColor = UIColor.brown.cgColor
         cell.layer.borderWidth = 1
         let index = indexPath.row
-        cell.imageURL = URL(string: guest[index].image)
-        cell.image.sd_setImage(with: cell.imageURL, placeholderImage: UIImage(named: "profile"))
-        cell.firstNameLabel.text = guest[index].first
-        cell.lastNameLabel.text = guest[index].last
-        cell.cid = guest[index].cid
-        cell.eyeImage.frame.size = CGSize(width: 30, height: 30)
-        switch (guest[index].eye){
+        print("Cell index", index, "Cell", cell)
+        cell.printCell()
+        cell.imageURL = URL(string: guests[index].image)
+        if cell.image != nil {
+        cell.image.sd_setImage(with: cell.imageURL, placeholderImage: UIImage(named: "profile")!)
+        cell.firstNameLabel.text = guests[index].first
+        cell.lastNameLabel.text = guests[index].last
+        cell.cid = guests[index].cid
+        cell.eyeImage.frame.size = CGSize(width: 25, height: 30)
+        switch (guests[index].eye){
             case 0: cell.eyeImage.image = UIImage(named: "eye")
             case 1: cell.eyeImage.image = UIImage(named: "touch")
         default:
             break
             }
-        cell.delegate = self
+        cell.delegateDelete = self
+        }
         return cell
-            }
+    }
 }
 
-extension GuestListViewController : cellDelegate{
+extension GuestListViewController : cellDeleteDelegate{
     func delete(cell: UICell) {
         if let index = collection?.indexPath(for: cell){
             BranchData.shared.removeGuest(cid: cell.cid, url: cell.imageURL)
             collection?.deleteItems(at: [index])
         }
     }
-    
 }
 

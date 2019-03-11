@@ -25,15 +25,32 @@ class addGuessViewController: UIViewController, SourceProtocol {
     @IBOutlet weak var ImagePickButton: UIButton!
     @IBOutlet weak var FieldsView: UIView!
     @IBOutlet weak var OrderLable: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     @IBAction func AddButtonAction(_ sender: Any) {
         if CheckWhatEmpty() {
             let firstName = FirstNameTextField.text
             let lastName =  LastNameTextFielld.text
-            let eye = EyeMonitorSwitch.isOn
+            var eye : Bool!
+            if EyeMonitorSwitch.isOn {
+                eye = true
+            }
+            else{
+                eye = false
+            }
             let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye" : eye]
-            BranchData.shared.addGuest(guest: guest, image: ImagePickButton.currentImage!)
-        self.navigationController?.popViewController(animated: true)
+            let image = ImagePickButton.currentImage!
+            activitySetup()
+            BranchData.shared.addGuest(guest: guest, image: image){ check in
+                if check != "no" {
+                    self.activityIndicator.stopAnimating()
+                    self.activityIndicator.isHidden = true; self.navigationController?.popViewController(animated: true)
+                }
+                else {
+                    sleep(1)
+                }
+            }
+            
         }
         else{
             WarningLable.isEnabled = true
@@ -52,9 +69,20 @@ class addGuessViewController: UIViewController, SourceProtocol {
         BackgroundSetup()
         ImagePickSetup()
         WrningSetup()
+        activityIndicator.frame.size = CGSize(width: 50, height: 50)
+        activityIndicator.isHidden = true
         //print("userid in aggGuest", userid)
     }
     
+    private func activitySetup(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blurEffectView)
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+    }
     private func WrningSetup(){
         WarningLable.textColor = UIColor.red
         WarningLable.isHidden = true

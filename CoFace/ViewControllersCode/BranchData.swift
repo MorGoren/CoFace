@@ -23,12 +23,13 @@ class BranchData {
     
     static let shared = BranchData()
     var branch: String!
-    var databaseRef = Database.database().reference()
-    var storageRef = Storage.storage().reference()
+    var databaseRef : DatabaseReference!
+    var storageRef : StorageReference!
     var flag = false
-    var guestInfo : Any!
+    var guestInfo = [guestData]()
     
     func getID(email: String){
+        databaseRef = Database.database().reference()
         databaseRef.root.child("Branches").observe(.value, with: { (snapshot) in
             if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
                 //print(snapshot)
@@ -44,20 +45,33 @@ class BranchData {
                 }
                 /*
                 print("child", child)*/
+                self.loadData(key: self.branch)
             }
         })
         sleep(1)
     }
     
      //image: UIImage
-    func addGuest(guest: [String : Any], image: UIImage){
-        guard let uid = databaseRef.child("Guest/\(branch ?? "defult")").childByAutoId().key else {return}
-        var guests : [String : Any] = ["first name": guest["first name"]!, "last name" : guest["last name"]! , "eye" : guest["eye"]!]
-        
-        UploadImage(folder: "GuestImages",uid: uid, image){ url in
+    func addGuest(guest: [String : Any], image: UIImage, completion : @escaping ((_ check: String?)->())){
+        databaseRef = Database.database().reference()
+        if let uid = databaseRef.child("Guest/\(branch ?? "defult")").childByAutoId().key{
+            var newGuest : [String : Any] = guest
+            UploadImage(folder: "GuestImages",uid: uid, image){ url in
+                newGuest["photoURL"] = url
+                self.databaseRef.child("Guest/\(self.branch ?? "defult")").child(uid).setValue(newGuest)
+                self.guestInfo.append(guestData(data: newGuest, cid: uid))
+                completion(uid)
+            }
+        }
+        else {
+            completion("no")
+        }
+        //var guests : [String : Any] = guest
+        //["first name": guest["first name"]!, "last name" : guest["last name"]! , "eye" : guest["eye"]!]
+        /*UploadImage(folder: "GuestImages",uid: uid, image){ url in
             guests["photoURL"] = url
             self.databaseRef.child("Guest/\(self.branch ?? "defult")").child(uid).setValue(guests)
-        }
+        }*/
     }
     
     func addCategory(category: String){
@@ -89,10 +103,28 @@ class BranchData {
         })
         databaseRef.child("Guest/\(branch ?? "defult")/\(cid)").removeValue()
     }
+    
+    private func loadData(key : String){
+        guard BranchData.shared.branch != nil  else { print("branch is nil"); return }
+        databaseRef = Database.database().reference()
+        databaseRef.root.child("Guest").child(key).observe(.value, with: { snapshot in
+            var newGuest = [guestData]()
+            for g in snapshot.children {
+                let gu = guestData(snapshot: g as! DataSnapshot)
+                newGuest.append(gu)
+                print(newGuest)
+            }
+            self.guestInfo = newGuest
+            print("guest list", self.guestInfo)
+        })
+    }
+    
     private func UploadImage(folder: String,uid: String, _ image: UIImage, completion: @escaping ((_ url: String?)->())) {
-        storageRef = Storage.storage().reference().child(folder).child(branch).child(uid)
+        storageRef = Storage.storage().reference().root().child(folder).child(branch).child(uid)
         guard let imageData = image.jpegData(compressionQuality: 0.75) else {return}
+        print("metaData", imageData)
         storageRef.putData(imageData, metadata: nil, completion: { (metaData, error) in
+            print("you are in")
             if error == nil && metaData != nil{
                 //succsess to upload to storage
                 self.storageRef.downloadURL(completion: { (url, error) in

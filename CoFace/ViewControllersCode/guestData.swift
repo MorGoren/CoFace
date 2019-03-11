@@ -16,19 +16,25 @@ struct guestData {
     var first: String!
     var last: String!
     var image: String!
-    var guestRef : DatabaseReference!
  
     init(cid: String, eye: Int, first: String, last: String, image: String){
         self.cid = cid
         self.eye = eye
         self.first = first
         self.last = last
-        self.guestRef = nil
         self.image = image
+        
+    }
+    
+    init(data : [String: Any], cid: String){
+        self.cid = cid
+        self.eye = data["eye"] as? Int
+        self.first = data["first name"] as? String
+        self.last = data["last name"] as? String
+        self.image = data["photoURL"] as? String
     }
     
     init(snapshot: DataSnapshot){
-        guestRef = snapshot.ref
        //print("SnapShot", snapshot.key)
         //print("SnapShot", snapshot)
         self.cid = snapshot.key

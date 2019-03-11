@@ -674,6 +674,10 @@
                                     <constraint firstItem="GrN-W8-ABs" firstAttribute="leading" secondItem="aAk-mI-5XM" secondAttribute="trailing" constant="68" id="wjP-Cb-4f0"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="TAf-hV-QUp">
+                                <rect key="frame" x="495" y="653" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -705,6 +709,7 @@
                         <outlet property="LastNameTextFielld" destination="N9e-bn-Oea" id="tWO-vQ-Pg5"/>
                         <outlet property="OrderLable" destination="22a-rm-a34" id="ACe-7p-GuN"/>
                         <outlet property="WarningLable" destination="aAk-mI-5XM" id="bjl-P8-mRZ"/>
+                        <outlet property="activityIndicator" destination="TAf-hV-QUp" id="MdV-hD-lAa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D5i-Fe-Boc" userLabel="First Responder" sceneMemberID="firstResponder"/>
