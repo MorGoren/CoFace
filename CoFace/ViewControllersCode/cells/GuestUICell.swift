@@ -9,9 +9,9 @@
 import UIKit
 
 protocol cellDeleteDelegate: class{
-    func delete(cell: UICell)
+    func delete(cell: GuestUICell)
 }
-class UICell: UICollectionViewCell {
+class GuestUICell: UICollectionViewCell {
     
     var cid: String!
     var imageURL: URL!
