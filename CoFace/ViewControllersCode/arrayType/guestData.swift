@@ -35,11 +35,8 @@ struct guestData {
     }
     
     init(snapshot: DataSnapshot){
-       //print("SnapShot", snapshot.key)
-        //print("SnapShot", snapshot)
         self.cid = snapshot.key
         let snapshotValue = snapshot.value as? [String: Any]
-        //print("SnapShotValue", snapshotValue)
         self.eye = snapshotValue?["eye"] as? Int
         self.first = snapshotValue?["last name"] as? String
         self.last = snapshotValue?["first name"] as? String

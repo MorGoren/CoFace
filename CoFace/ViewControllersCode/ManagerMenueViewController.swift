@@ -15,6 +15,12 @@ class ManagerMenue: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         BackgroundSetup()
+        //BranchData.shared.loadMyItems()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //BranchData.shared.loadMyItems()
     }
     
     private func BackgroundSetup(){

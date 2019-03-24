@@ -1,26 +1,25 @@
 //
-//  CategoryPopup.swift
+//  ItemPopup.swift
 //  CoFace
 //
-//  Created by Timur Misharin on 13/03/2019.
+//  Created by Timur Misharin on 24/03/2019.
 //  Copyright © 2019 MorGoren. All rights reserved.
 //
 
 import UIKit
 
-protocol refreshCollection {
-    func refresh()
+protocol refresh: class {
+    func refreshCollection()
 }
-class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
-    var cat = BranchData.shared.categoryList
-    var re : refreshCollection?
+class ItemPopup: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
-    @IBAction func cancelAction(_ sender: Any) {
-        self.view.removeFromSuperview()
-    }
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBAction func ImageAction(_ sender: Any) {
+    var re: refresh?
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var add: UIButton!
+    var category: String!
+    @IBOutlet weak var name: RoundTextField!
+    @IBOutlet weak var image: UIButton!
+    @IBAction func imageAction(_ sender: Any) {
         let imagePicketController = UIImagePickerController()
         imagePicketController.delegate = self
         let actionSheet = UIAlertController(title: "Photo Source", message: nil, preferredStyle: .actionSheet)
@@ -42,31 +41,38 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var categoryName: RoundTextField!
-    @IBOutlet weak var add: UIButton!
     @IBAction func addAction(_ sender: Any) {
         bluredEffect()
-        if checkWhatEmpty() {
-            let new = ["name": categoryName.text]
-            BranchData.shared.addCategoryList(category: new as [String : Any], image: categoryButton.currentImage! , completion: {check in
+        if whatEmpty(){
+            BranchData.shared.addItem(category: category, item: ["name": name.text as Any], image: (image.imageView?.image)!) { check in
                 if check != "no"{
-                    self.re?.refresh()
+                    self.re?.refreshCollection()
                     self.view.removeFromSuperview()
                 }
                 else{
                     sleep(1)
                 }
-            })
+            }
         }
+    }
+    
+    @IBAction func cancel(_ sender: Any) {
+        self.view.removeFromSuperview()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Setup()
+        cancelButton.isHidden = false
     }
     
-    private func Setup(){
-        add.frame.size = CGSize(width: 50, height: 50)
+    private func whatEmpty()->Bool{
+        if image.currentImage != UIImage(named: "image"){
+            if name.text != nil{
+                return true
+            }
+            return false
+        }
+        return false
     }
     
     private func bluredEffect(){
@@ -78,25 +84,15 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
         view.addSubview(blurEffectView)
     }
     
-    private func checkWhatEmpty()-> Bool{
-        if categoryName != nil{
-            if categoryButton.imageView?.image != UIImage(named: "image"){
-                return true
-            }
-            return false
-        }
-        return false
-    }
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            categoryButton.setImage(pickedImage, for: .normal)
-            categoryButton.layer.borderWidth = 10
-            categoryButton.layer.borderColor = UIColor.black.cgColor
+            image.setImage(pickedImage, for: .normal)
+            image.layer.borderWidth = 10
+            image.layer.borderColor = UIColor.black.cgColor
         }
         picker.dismiss(animated: true, completion: nil)
     }

@@ -69,14 +69,28 @@ class ViewController: UIViewController{
             if CheckSignUp(){
                 if SignUp(){
                 //print("email", EmailTextField.text)
-                BranchData.shared.getID(email: EmailTextField.text ?? "defult")
+                    BranchData.shared.getID(email: EmailTextField.text ?? "defult", completion: { check in
+                        if check == true{
+                            self.NavigateToManagerMenu()
+
+                        }
+                        
+                        else{
+                            self.WarningLable.text = "oop! something not right"
+                            self.WarningLable.isHidden = false
+                        }
+                    })
+                }
             }
-        }
         }
         if mode == "login" {
             CheckLogin() { check in
                 if check == true{
-                    BranchData.shared.getID(email: self.EmailTextField.text ?? "defult")
+                    BranchData.shared.getID(email: self.EmailTextField.text ?? "defult", completion: { check in
+                        if check == true{
+                            self.NavigateToManagerMenu()
+                        }
+                    })
                 }
                 else {
                     self.WarningLable.text = "oop! something not right"
@@ -90,8 +104,7 @@ class ViewController: UIViewController{
             Activity.startAnimating()
             Activity.isHidden = false
         }
-        print(BranchData.shared.branch)
-        NavigateToManagerMenu()
+        //print(BranchData.shared.branch)
     }
     
     private func NavigateToManagerMenu(){
@@ -294,7 +307,6 @@ class ViewController: UIViewController{
 
 extension String {
     func isValidEmail() -> Bool {
-        // here, `try!` will always succeed because the pattern is valid
         let regex = try! NSRegularExpression(pattern: "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$", options: .caseInsensitive)
         return regex.firstMatch(in: self, options: [], range: NSRange(location: 0, length: count)) != nil
     }

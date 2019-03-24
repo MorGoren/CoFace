@@ -10,6 +10,8 @@ import UIKit
 
 class CollectionFlowLayout: UICollectionViewFlowLayout {
     
+    var numberOfItem: CGFloat!
+    
     override init() {
         super.init()
         setUpLayout()
@@ -23,7 +25,7 @@ class CollectionFlowLayout: UICollectionViewFlowLayout {
     override var itemSize: CGSize{
         set {}
         get {
-            let numberofColumns: CGFloat = 3
+            let numberofColumns: CGFloat = numberOfItem
             let itemWidth = (self.collectionView!.frame.width - (numberofColumns - 1)) / numberofColumns
             return CGSize(width: itemWidth, height: itemWidth)
         }

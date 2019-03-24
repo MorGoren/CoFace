@@ -20,6 +20,7 @@ class GuestListViewController: UIViewController, UICollectionViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
         flowLayout = CollectionFlowLayout()
+        flowLayout.numberOfItem = 3
         collection.collectionViewLayout = flowLayout
         guests = BranchData.shared.guestInfo
         collection?.reloadData()

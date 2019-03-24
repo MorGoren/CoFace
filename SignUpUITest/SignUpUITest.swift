@@ -29,18 +29,6 @@ class SignUpUITest: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
-        let app = XCUIApplication()
-        let email = app.textFields["Email"]
-        email.tap()
-        email.typeText("mor8goren@gmail.com")
-        let pass = app.secureTextFields["Password"]
-        pass.tap()
-        pass.typeText("ovgu1948")
-        app.buttons["login"].tap()
-        
-
-        
                                 
     }
 

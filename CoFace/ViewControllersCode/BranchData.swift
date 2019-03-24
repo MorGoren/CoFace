@@ -26,11 +26,12 @@ class BranchData {
     var databaseRef : DatabaseReference!
     var storageRef : StorageReference!
     var flag = false
+    var categoryList = [categoryData]()
     var guestInfo = [guestData]()
-    var category = [categoryData]()
-    var categoryList: Array = ["אוכל", "שתיה", "חטיף", "פרי"]
+    var myCategories = [categoryData]()
+    var myItems = [String: [itemData]]()
     
-    func getID(email: String){
+    func getID(email: String, completion: @escaping ((_ check: Bool?)->())){
         databaseRef = Database.database().reference()
         databaseRef.root.child("Branches").observe(.value, with: { (snapshot) in
             if ((snapshot.children.allObjects as? [DataSnapshot]) != nil) {
@@ -47,19 +48,26 @@ class BranchData {
                 }
                 /*
                 print("child", child)*/
-                self.loadData(folder: "Guest")
-                self.loadData(folder: "Category")
+                self.loadGuest()
+                self.loadCategories()
+                self.loadMyCategories(completion: { check in
+                    if check == true{
+                        self.loadMyItems()
+                    }
+                })
             }
+            completion(true)
         })
-        sleep(1)
+        completion(false)
     }
     
      //image: UIImage
     func addGuest(guest: [String : Any], image: UIImage, completion : @escaping ((_ check: String?)->())){
         databaseRef = Database.database().reference()
-        if let uid = databaseRef.child("Guest/\(branch ?? "defult")").childByAutoId().key{
+        let path = "Guest/\(branch ?? "defult")"
+        if let uid = databaseRef.child(path).childByAutoId().key{
             var newGuest : [String : Any] = guest
-            UploadImage(folder: "Guest",id: uid, image){ url in
+            UploadImage(path: path ,id: uid, image){ url in
                 newGuest["photoURL"] = url
                 self.databaseRef.child("Guest/\(self.branch ?? "defult")").child(uid).setValue(newGuest)
                 self.guestInfo.append(guestData(data: newGuest, cid: uid))
@@ -71,12 +79,11 @@ class BranchData {
         }
     }
     
-    func addCategory(category: String, image: UIImage, completion: @escaping ((_ check: String?)->())){
+    func addCategory(category: [String: Any], completion: @escaping ((_ check: String?)->())){
         databaseRef = Database.database().reference()
         if let cid = databaseRef.child("Category/\(branch ?? "defult")").childByAutoId().key{
-            let newCategory = ["name": category]
-            self.databaseRef.child("Category/\(self.branch ?? "defult")").child(cid).setValue(newCategory)
-            self.category.append(categoryData(data: newCategory, id: cid))
+            self.databaseRef.child("Category/\(self.branch ?? "defult")").child(cid).setValue(category)
+            self.myCategories.append(categoryData(data: category, id: cid))
             completion(cid)
         }
         else{
@@ -84,9 +91,38 @@ class BranchData {
         }
     }
     
+    func addCategoryList(category: [String: Any], image: UIImage, completion: @escaping ((_ check: String?)->())){
+        databaseRef = Database.database().reference()
+        if let id = databaseRef.child("CategoryList").childByAutoId().key{
+            var new : [String : Any] = category
+            let path = "CategoryList"
+            UploadImage(path: path,id: id, image){ url in
+                new["photoURL"] = url
+                self.databaseRef.child("CategoryList").child(id).setValue(new)
+                self.categoryList.append(categoryData(data: new, id: id))
+                completion(id)
+            }
+        }
+        else {
+            completion("no")
+        }
+    }
     
-    func addItem(item: Any){
-        
+    func addItem(category: String, item: [String: Any], image: UIImage, completion: @escaping ((_ check: String?)->())){
+        databaseRef = Database.database().reference()
+        if let id = databaseRef.child("Items/\(category)").childByAutoId().key{
+            var new : [String : Any] = item
+            let path = "Items/\(category)"
+            UploadImage(path: path,id: id, image){ url in
+                new["photoURL"] = url
+                self.databaseRef.child("Items/\(category)").child(id).setValue(new)
+                self.myItems[category]?.append((itemData(data: new, id: id)))
+                completion(id)
+            }
+        }
+        else {
+            completion("no")
+        }
     }
     
     private func unwrap<T>(_ any: T) -> String
@@ -107,46 +143,70 @@ class BranchData {
         removeFromDatabase(path: "Category/\(branch ?? "defult")/\(cid)")
     }
     
-    private func loadData(folder: String){
+    func removeItem(path: String, url: String){
+        removeFromDatabase(path: path)
+        removeFromStorage(url: url)
+    }
+    
+    private func loadGuest(){
         guard BranchData.shared.branch != nil  else { print("branch is nil"); return }
-        databaseRef = Database.database().reference()
-        databaseRef.root.child(folder).child(self.branch).observe(.value, with: { snapshot in
-            switch folder{
-                case "Guest":
-                    var newData = [guestData]()
-                    for nd in snapshot.children {
-                        let data = guestData(snapshot: nd as! DataSnapshot)
-                        newData.append(data)
-                        print(newData)
-                    }
-                    self.guestInfo = newData
-                    print("guest list", self.guestInfo)
-                case "Category":
-                    var newData = [categoryData]()
-                    for nd in snapshot.children {
-                        let data = categoryData(snapshot: nd as! DataSnapshot)
-                        newData.append(data)
-                        print("Category", newData)
-                    }
-                self.category = newData
-                print("category list", self.category)
-                //case "Item":
-            default:
-                break
-            }
+        databaseRef.root.child("Guest").child(self.branch).observe(.value, with: { snapshot in
+                var newData = [guestData]()
+                for nd in snapshot.children {
+                    let data = guestData(snapshot: nd as! DataSnapshot)
+                    newData.append(data)
+                    //print(newData)
+                }
+                self.guestInfo = newData
         })
     }
     
-   /* private func addToDatabase(path: String, item: [String: Any], itemImage: UIImage, to: String, completion : @escaping ((_ check: String?)->())){
+    private func loadMyCategories(completion: @escaping ((_ check: Bool?)->())){
+        guard BranchData.shared.branch != nil  else { print("branch is nil"); return }
         databaseRef = Database.database().reference()
-        if let uid = databaseRef.child(path).childByAutoId().key{
-            addToStorage(path: path, completion: <#T##((String?) -> ())##((String?) -> ())##(String?) -> ()#>)
-        }
+        databaseRef.root.child("Category").child(self.branch).observe(.value, with: { snapshot in
+            var newData = [categoryData]()
+            for nd in snapshot.children {
+                let data = categoryData(snapshot: nd as! DataSnapshot)
+                newData.append(data)
+                //print("Category", newData)
+            }
+            self.myCategories = newData
+            completion(true)
+        })
     }
     
-    private func addToStorage(path: String, completion : @escaping ((_ check: String?)->())){
-        
-    }*/
+    private func loadCategories(){
+        databaseRef = Database.database().reference()
+        databaseRef.root.child("CategoryList").observe(.value, with: { snapshot in
+            var newData = [categoryData]()
+            for nd in snapshot.children {
+                let data = categoryData(snapshot: nd as! DataSnapshot)
+                newData.append(data)
+                //print("Category", newData)
+            }
+            self.categoryList = newData
+            //print("category list", self.categoryList)
+        })
+    }
+    
+    func loadMyItems(){
+        databaseRef = Database.database().reference().root.child("Items")
+        print("my categories", self.myCategories)
+        for category in self.myCategories{
+            print("im in!!!")
+            databaseRef.child(category.cid).observe(.value, with: { snapshot in
+                var newData = [itemData]()
+                for nd in snapshot.children{
+                    let data = itemData(snapshot: nd as! DataSnapshot)
+                    newData.append(data)
+                    print("item new data", newData)
+                }
+                self.myItems[category.cid] = newData
+            })
+            print("myItem array until now", self.myItems)
+        }
+    }
     
     private func removeFromDatabase(path: String){
         databaseRef = Database.database().reference()
@@ -166,8 +226,8 @@ class BranchData {
         })
     }
 
-    private func UploadImage(folder: String,id: String, _ image: UIImage, completion: @escaping ((_ url: String?)->())) {
-        storageRef = Storage.storage().reference().root().child(folder).child(branch).child(id)
+    private func UploadImage(path: String,id: String, _ image: UIImage, completion: @escaping ((_ url: String?)->())) {
+        storageRef = Storage.storage().reference().root().child(path).child(id)
         guard let imageData = image.jpegData(compressionQuality: 0.75) else {return}
         print("metaData", imageData)
         storageRef.putData(imageData, metadata: nil, completion: { (metaData, error) in

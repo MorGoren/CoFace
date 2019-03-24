@@ -7,56 +7,36 @@
 //
 
 import UIKit
+import SDWebImage
 
 class CategoryCollectionView: UIViewController, UICollectionViewDataSource{
     
     var categories : [categoryData]!
     var flowLayout: CollectionFlowLayout!
-    @IBOutlet weak var addOption: UIButton!
+    //var categoryItems: String!
     @IBOutlet weak var collection: UICollectionView!
-    @IBAction func addAction(_ sender: Any) {
-        ShowPopup()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Setup()
         flowLayout = CollectionFlowLayout()
+        flowLayout.numberOfItem = 2
         collection.collectionViewLayout = flowLayout
-        categories = BranchData.shared.category
+        categories = BranchData.shared.myCategories
         collection?.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        collection?.reloadData()
         super.viewWillAppear(animated)
+        categories = BranchData.shared.myCategories
+        collection?.reloadData()
     }
     
-    private func ShowPopup(){
-        let popOverVC = UIStoryboard(name: "Main", bundle:nil).instantiateViewController(withIdentifier: "CategoryPopup") as! CategoryPopup
-        //popOverVC.ProtocolMess = self
-        self.addChild(popOverVC)
-        popOverVC.view.frame = self.view.frame
-        self.view.addSubview(popOverVC.view)
-        popOverVC.didMove(toParent: self)
-    }
-    
-    private func Setup(){
-        addOption.frame.size = CGSize(width: 100, height: 100)
-    }
-    
-    private func setCellImage(category: String) -> String{
-        let cat = BranchData.shared.categoryList
-        var answer = "delete"
-        switch category{
-            case cat[3]: answer = "fruit"
-            case cat[2]: answer = "snacks"
-            case cat[1]: answer = "cup"
-            case cat[0]: answer = "food"
-            default:
-            break
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "itemSegue" {
+            let destinationVC = segue.destination as! ItemCollectionView
+            let cell = sender as! CategoryUICell
+            destinationVC.cid = cell.cid
         }
-        return answer
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -71,16 +51,18 @@ class CategoryCollectionView: UIViewController, UICollectionViewDataSource{
         cell.cid = categories[index].cid
         if cell.cid != nil {
             cell.categoryLabel.text = categories[index].name
-            cell.categoryButton.setImage(UIImage(named: setCellImage(category: cell.categoryLabel.text!))?.withRenderingMode(.alwaysOriginal), for: .normal)
-            cell.delete = self
+            cell.image = categories[index].image
+            
+            cell.categoryImage.sd_setImage(with: URL(string: cell.image), placeholderImage: UIImage(named: "image")!)
+            cell.action = self
         }
         return cell
     }
 }
 
-extension CategoryCollectionView: categoryDelete {
+extension CategoryCollectionView: categoryProtocol {
+    
     func deleteCat(cell: CategoryUICell) {
-        print(collection?.indexPath(for: cell))
         if let index = collection?.indexPath(for: cell){
             BranchData.shared.removeCategory(cid: cell.cid)
             categories.remove(at: index.row)

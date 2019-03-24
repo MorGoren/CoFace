@@ -9,8 +9,11 @@
 /* Begin PBXBuildFile section */
 		2402A5AE22035A0A000C466C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2402A5AD22035A0A000C466C /* GoogleService-Info.plist */; };
 		2402A5B622035F03000C466C /* SignUpUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402A5B522035F03000C466C /* SignUpUITest.swift */; };
+		2404524F223E8F7100C6C589 /* itemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404524E223E8F7100C6C589 /* itemData.swift */; };
 		2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438AA25220C29ED0091310D /* MainNavigationController.swift */; };
 		24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24510F8C2208DEAC008178BC /* AddGuessViewController.swift */; };
+		2456A410223F9DF600C6FCB5 /* CategoriesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456A40F223F9DF600C6FCB5 /* CategoriesListView.swift */; };
+		2456A412223FB01100C6FCB5 /* categoryListUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2456A411223FB01100C6FCB5 /* categoryListUICell.swift */; };
 		2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480D76A21E610F800FCCB93 /* AppDelegate.swift */; };
 		2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2480D76C21E610F800FCCB93 /* ViewController.swift */; };
 		2480D77021E610F800FCCB93 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2480D76E21E610F800FCCB93 /* Main.storyboard */; };
@@ -21,6 +24,9 @@
 		2485F261222D7CA300B48A3E /* guestData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485F260222D7CA300B48A3E /* guestData.swift */; };
 		249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */; };
 		24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24AC06F5220B136000333ACB /* GuestListViewController.swift */; };
+		24B3905F22478FA80045994E /* ItemUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3905E22478FA80045994E /* ItemUICell.swift */; };
+		24B390612247927D0045994E /* ItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B390602247927D0045994E /* ItemCollectionView.swift */; };
+		24B39064224793AF0045994E /* ItemPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B39063224793AF0045994E /* ItemPopup.swift */; };
 		24B43C88223A2E4D00A94915 /* categoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B43C87223A2E4D00A94915 /* categoryData.swift */; };
 		24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */; };
 		24D14924223924C100DA0FE5 /* CategoreyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */; };
@@ -49,8 +55,11 @@
 		2402A5B322035F03000C466C /* SignUpUITest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignUpUITest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2402A5B522035F03000C466C /* SignUpUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUITest.swift; sourceTree = "<group>"; };
 		2402A5B722035F03000C466C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2404524E223E8F7100C6C589 /* itemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = itemData.swift; sourceTree = "<group>"; };
 		2438AA25220C29ED0091310D /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		24510F8C2208DEAC008178BC /* AddGuessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGuessViewController.swift; sourceTree = "<group>"; };
+		2456A40F223F9DF600C6FCB5 /* CategoriesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesListView.swift; sourceTree = "<group>"; };
+		2456A411223FB01100C6FCB5 /* categoryListUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryListUICell.swift; sourceTree = "<group>"; };
 		2480D76721E610F800FCCB93 /* CoFace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoFace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2480D76A21E610F800FCCB93 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2480D76C21E610F800FCCB93 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +74,9 @@
 		2485F260222D7CA300B48A3E /* guestData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = guestData.swift; sourceTree = "<group>"; };
 		249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerMenueViewController.swift; sourceTree = "<group>"; };
 		24AC06F5220B136000333ACB /* GuestListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuestListViewController.swift; sourceTree = "<group>"; };
+		24B3905E22478FA80045994E /* ItemUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemUICell.swift; sourceTree = "<group>"; };
+		24B390602247927D0045994E /* ItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionView.swift; sourceTree = "<group>"; };
+		24B39063224793AF0045994E /* ItemPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPopup.swift; sourceTree = "<group>"; };
 		24B43C87223A2E4D00A94915 /* categoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryData.swift; sourceTree = "<group>"; };
 		24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoreyCollectionView.swift; sourceTree = "<group>"; };
@@ -113,6 +125,7 @@
 			children = (
 				24B43C87223A2E4D00A94915 /* categoryData.swift */,
 				2485F260222D7CA300B48A3E /* guestData.swift */,
+				2404524E223E8F7100C6C589 /* itemData.swift */,
 			);
 			path = arrayType;
 			sourceTree = "<group>";
@@ -126,6 +139,7 @@
 				24D149252239254500DA0FE5 /* cells */,
 				2480D76C21E610F800FCCB93 /* ViewController.swift */,
 				24510F8C2208DEAC008178BC /* AddGuessViewController.swift */,
+				24B39063224793AF0045994E /* ItemPopup.swift */,
 				249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */,
 				2438AA25220C29ED0091310D /* MainNavigationController.swift */,
 				24D8857D22200DD8001A402B /* BranchData.swift */,
@@ -174,6 +188,8 @@
 			children = (
 				2485F255222D40C000B48A3E /* GuestUICell.swift */,
 				24D1492A22392AB200DA0FE5 /* CategoryUICell.swift */,
+				2456A411223FB01100C6FCB5 /* categoryListUICell.swift */,
+				24B3905E22478FA80045994E /* ItemUICell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -183,6 +199,8 @@
 			children = (
 				24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */,
 				24AC06F5220B136000333ACB /* GuestListViewController.swift */,
+				2456A40F223F9DF600C6FCB5 /* CategoriesListView.swift */,
+				24B390602247927D0045994E /* ItemCollectionView.swift */,
 			);
 			path = collections;
 			sourceTree = "<group>";
@@ -400,19 +418,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */,
+				24B3905F22478FA80045994E /* ItemUICell.swift in Sources */,
 				2485F261222D7CA300B48A3E /* guestData.swift in Sources */,
 				24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */,
 				24E2406A2239513E0011AB66 /* CategoryPopup.swift in Sources */,
 				24D8857E22200DD8001A402B /* BranchData.swift in Sources */,
 				2485F258222D47BE00B48A3E /* CollectionFlowLayout.swift in Sources */,
 				24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */,
+				2456A412223FB01100C6FCB5 /* categoryListUICell.swift in Sources */,
 				24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */,
+				2404524F223E8F7100C6C589 /* itemData.swift in Sources */,
 				24D14924223924C100DA0FE5 /* CategoreyCollectionView.swift in Sources */,
 				2485F256222D40C000B48A3E /* GuestUICell.swift in Sources */,
+				24B390612247927D0045994E /* ItemCollectionView.swift in Sources */,
 				24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */,
 				24B43C88223A2E4D00A94915 /* categoryData.swift in Sources */,
 				24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */,
+				2456A410223F9DF600C6FCB5 /* CategoriesListView.swift in Sources */,
 				24D1492B22392AB200DA0FE5 /* CategoryUICell.swift in Sources */,
+				24B39064224793AF0045994E /* ItemPopup.swift in Sources */,
 				2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */,
 				249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */,
 				2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */,

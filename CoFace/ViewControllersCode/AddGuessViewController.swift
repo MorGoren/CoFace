@@ -36,7 +36,8 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
             BranchData.shared.addGuest(guest: guest, image: image){ check in
                 if check != "no" {
                     self.activityIndicator.stopAnimating()
-                    self.activityIndicator.isHidden = true; self.navigationController?.popViewController(animated: true)
+                    self.activityIndicator.isHidden = true
+                    self.navigationController?.popViewController(animated: true)
                 }
                 else {
                     sleep(1)
@@ -51,8 +52,6 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
     
     
     @IBAction func ImagePickAction(_ sender: Any) {
-        //ShowPopup()
-        //GetImage()
         let imagePicketController = UIImagePickerController()
         imagePicketController.delegate = self
         let actionSheet = UIAlertController(title: "Photo Source", message: nil, preferredStyle: .actionSheet)
