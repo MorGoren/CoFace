@@ -52,7 +52,6 @@ class CategoryCollectionView: UIViewController, UICollectionViewDataSource{
         if cell.cid != nil {
             cell.categoryLabel.text = categories[index].name
             cell.image = categories[index].image
-            
             cell.categoryImage.sd_setImage(with: URL(string: cell.image), placeholderImage: UIImage(named: "image")!)
             cell.action = self
         }

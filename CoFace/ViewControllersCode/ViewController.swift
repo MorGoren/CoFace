@@ -15,6 +15,11 @@ class ViewController: UIViewController{
     
     var mode: String! = "login"
     var mDatabase: DatabaseReference!
+    @IBOutlet weak var loginShowHide: UIButton!
+    @IBOutlet weak var loginEmail: RoundTextField!
+    @IBOutlet weak var loginPassword: RoundTextField!
+    @IBOutlet weak var loginView: UIView!
+    @IBOutlet weak var signView: UIView!
     @IBOutlet weak var BackgraoundImage: UIImageView!
     @IBOutlet weak var WarningLable: UILabel!
     @IBOutlet weak var LogInButton: RoundButton!
@@ -26,7 +31,6 @@ class ViewController: UIViewController{
     @IBOutlet weak var SignInArrowButton: UIButton!
     @IBOutlet weak var ShowHideCPasswordButton: UIButton!
     @IBOutlet weak var ShowHidePassButton: UIButton!
-    @IBOutlet weak var Activity: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +43,6 @@ class ViewController: UIViewController{
         ModeChange(mode: mode)
         WarningLableSetup()
         BackgraoundSetup()
-        Activity.isHidden = true
     }
     
     @IBAction func LogInButtonAction(_ sender: Any) {
@@ -64,7 +67,11 @@ class ViewController: UIViewController{
         ShowHide(button: ShowHideCPasswordButton, textField: ConfirmPasswordTextField)
     }
     
+    @IBAction func LoginShowHideAction(_ sender: Any) {
+        ShowHide(button: loginShowHide, textField: loginPassword)
+    }
     @IBAction func ArrowAction(_ sender: Any) {
+        blurdView()
         if mode == "signup"{
             if CheckSignUp(){
                 if SignUp(){
@@ -72,7 +79,6 @@ class ViewController: UIViewController{
                     BranchData.shared.getID(email: EmailTextField.text ?? "defult", completion: { check in
                         if check == true{
                             self.NavigateToManagerMenu()
-
                         }
                         
                         else{
@@ -86,7 +92,7 @@ class ViewController: UIViewController{
         if mode == "login" {
             CheckLogin() { check in
                 if check == true{
-                    BranchData.shared.getID(email: self.EmailTextField.text ?? "defult", completion: { check in
+                    BranchData.shared.getID(email: self.loginEmail.text ?? "defult", completion: { check in
                         if check == true{
                             self.NavigateToManagerMenu()
                         }
@@ -97,12 +103,6 @@ class ViewController: UIViewController{
                     self.WarningLable.isHidden = false
                 }
             }
-        }
-        
-        if Activity.isAnimating != true{
-            blurdView()
-            Activity.startAnimating()
-            Activity.isHidden = false
         }
         //print(BranchData.shared.branch)
     }
@@ -116,15 +116,13 @@ class ViewController: UIViewController{
     
     private func ModeChange(mode : String){
         if mode == "login" {
-            CityTextField.isHidden = true
-            ConfirmPasswordTextField.isHidden = true
-            ShowHideCPasswordButton.isHidden = true
+            loginView.isHidden = false
+            signView.isHidden = true
             CleanField()
         }
         if mode == "signup" {
-            CityTextField.isHidden = false
-            ConfirmPasswordTextField.isHidden = false
-            ShowHideCPasswordButton.isHidden = false
+            loginView.isHidden = true
+            signView.isHidden = false
             CleanField()
         }
     }
@@ -196,11 +194,11 @@ class ViewController: UIViewController{
     private func WhatEmpty()-> Bool{
         var answer = true
         WarningLable.text = "The following fields can't be empty: \n"
-        if (EmailTextField.text?.isEmpty)! {
+        if (loginEmail.text?.isEmpty)! {
             WarningLable.text?.append(contentsOf: " * Email \n")
             answer = false
         }
-        if (PasswordTextField.text?.isEmpty)!{
+        if (loginPassword.text?.isEmpty)!{
             WarningLable.text?.append(contentsOf: " * Password \n")
             answer = false
         }
@@ -263,8 +261,8 @@ class ViewController: UIViewController{
     }
     
     private func LogIn(completion: @escaping ((_ check: Bool?)->())){
-        let email = EmailTextField.text
-        let password = PasswordTextField.text
+        let email = loginEmail.text
+        let password = loginPassword.text
         Auth.auth().signIn(withEmail: email ?? "defult", password: password ?? "defult") { user, error in
             if user != nil && error == nil {
                     completion(true)
