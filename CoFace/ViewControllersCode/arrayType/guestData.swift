@@ -11,7 +11,7 @@ import FirebaseDatabase
 
 struct guestData {
     
-    var cid: String?
+    var cid: String!
     var eye: Int!
     var first: String!
     var last: String!
