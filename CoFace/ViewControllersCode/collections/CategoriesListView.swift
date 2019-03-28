@@ -56,7 +56,7 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
         let index = indexPath.row
         cell.cid = categoriesList[index].cid
         cell.go = self
-        if cell.cid != nil {
+        if cell.image != nil {
             cell.label.text = categoriesList[index].name
             cell.addButton.frame.size = CGSize(width: 50, height: 50)
             print(cell.label.text as Any)

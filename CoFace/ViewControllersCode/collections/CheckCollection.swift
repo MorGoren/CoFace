@@ -1,26 +1,25 @@
 //
-//  PictureCollection.swift
+//  CheckCollection.swift
 //  CoFace
 //
-//  Created by User on 25/03/2019.
+//  Created by User on 28/03/2019.
 //  Copyright © 2019 MorGoren. All rights reserved.
 //
 
 import UIKit
 
-class PictureCollection: UIViewController, UICollectionViewDataSource {
+class CheckCollection: UIViewController, UICollectionViewDataSource {
     
-    var arrayImages = [guestData]()
+    var arrayImages = [itemData]()
+    var id: String!
     var imageLayout: CollectionFlowLayout!
-    
     @IBOutlet weak var collection: UICollectionView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageLayout = CollectionFlowLayout()
-        imageLayout.numberOfItem = 2
-        collection.collectionViewLayout = imageLayout
-        arrayImages = BranchData.shared.guestInfo
+        arrayImages = BranchData.shared.myItems[id] ?? []
+        print(arrayImages)
         collection?.reloadData()
     }
     
@@ -29,14 +28,14 @@ class PictureCollection: UIViewController, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PictureCell
+        
+        let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CheckCell
         let url = URL(string: arrayImages[indexPath.row].image)
         cell.layer.borderColor = UIColor.brown.cgColor
-        cell.layer.borderWidth = 1 
-        print("url here", url)
-        cell.image.sd_setImage(with: url, placeholderImage:UIImage(named: "profile"))
-        //cell.image.frame.size = CGSize(
+        cell.layer.borderWidth = 1
+        cell.image.sd_setBackgroundImage(with: url, for: .normal, completed: nil)
         return cell
     }
-
+    
+    
 }
