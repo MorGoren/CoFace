@@ -30,13 +30,13 @@
 		24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */; };
 		24D14924223924C100DA0FE5 /* CategoreyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */; };
 		24D1492B22392AB200DA0FE5 /* CategoryUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1492A22392AB200DA0FE5 /* CategoryUICell.swift */; };
+		24D607A1224D642F00C57C9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D607A0224D642F00C57C9E /* GoogleService-Info.plist */; };
 		24D8857E22200DD8001A402B /* BranchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D8857D22200DD8001A402B /* BranchData.swift */; };
 		24E0D37921FB505F00A2263A /* dorianclm-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */; };
 		24E0D37A21FB505F00A2263A /* maklot_ez.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37721FB41FA00A2263A /* maklot_ez.ttf */; };
 		24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0D37B21FD0F0C00A2263A /* RoundButton.swift */; };
 		24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E0D37D21FDABF200A2263A /* RoundTextField.swift */; };
 		24E2406A2239513E0011AB66 /* CategoryPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24E240692239513E0011AB66 /* CategoryPopup.swift */; };
-		CEBF4C382248F97600B31D21 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBF4C372248F97500B31D21 /* GoogleService-Info.plist */; };
 		CEBF4C3A2248FFCD00B31D21 /* PictureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */; };
 		CEBF4C3C2249002E00B31D21 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C3B2249002E00B31D21 /* PictureCell.swift */; };
 		CEBF4C3E22491A7100B31D21 /* OrderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */; };
@@ -86,6 +86,7 @@
 		24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoreyCollectionView.swift; sourceTree = "<group>"; };
 		24D1492A22392AB200DA0FE5 /* CategoryUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUICell.swift; sourceTree = "<group>"; };
+		24D607A0224D642F00C57C9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24D8857D22200DD8001A402B /* BranchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchData.swift; sourceTree = "<group>"; };
 		24E0D37721FB41FA00A2263A /* maklot_ez.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = maklot_ez.ttf; sourceTree = "<group>"; };
 		24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dorianclm-book-webfont.ttf"; sourceTree = "<group>"; };
@@ -95,7 +96,6 @@
 		312C57D69A47AE67B7CD4CE7 /* Pods-CoFace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoFace.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoFace/Pods-CoFace.debug.xcconfig"; sourceTree = "<group>"; };
 		9123BF664143E60D068BEF25 /* Pods_CoFace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoFace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C54AE633374D531A7DE9DF30 /* Pods-CoFace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoFace.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoFace/Pods-CoFace.release.xcconfig"; sourceTree = "<group>"; };
-		CEBF4C372248F97500B31D21 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollection.swift; sourceTree = "<group>"; };
 		CEBF4C3B2249002E00B31D21 /* PictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
 		CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollection.swift; sourceTree = "<group>"; };
@@ -187,8 +187,8 @@
 				24E0D37621FB41CB00A2263A /* Fonts */,
 				2480D76A21E610F800FCCB93 /* AppDelegate.swift */,
 				2480D76E21E610F800FCCB93 /* Main.storyboard */,
+				24D607A0224D642F00C57C9E /* GoogleService-Info.plist */,
 				2480D77121E610FA00FCCB93 /* Assets.xcassets */,
-				CEBF4C372248F97500B31D21 /* GoogleService-Info.plist */,
 				2480D77321E610FA00FCCB93 /* LaunchScreen.storyboard */,
 				2480D77621E610FA00FCCB93 /* Info.plist */,
 			);
@@ -326,6 +326,7 @@
 			knownRegions = (
 				en,
 				Base,
+				he,
 			);
 			mainGroup = 2480D75E21E610F800FCCB93;
 			productRefGroup = 2480D76821E610F800FCCB93 /* Products */;
@@ -355,7 +356,7 @@
 				2480D77521E610FA00FCCB93 /* LaunchScreen.storyboard in Resources */,
 				2480D77221E610FA00FCCB93 /* Assets.xcassets in Resources */,
 				2480D77021E610F800FCCB93 /* Main.storyboard in Resources */,
-				CEBF4C382248F97600B31D21 /* GoogleService-Info.plist in Resources */,
+				24D607A1224D642F00C57C9E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
