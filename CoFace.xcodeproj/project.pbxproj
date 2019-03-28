@@ -39,6 +39,10 @@
 		CEBF4C382248F97600B31D21 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBF4C372248F97500B31D21 /* GoogleService-Info.plist */; };
 		CEBF4C3A2248FFCD00B31D21 /* PictureCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */; };
 		CEBF4C3C2249002E00B31D21 /* PictureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C3B2249002E00B31D21 /* PictureCell.swift */; };
+		CEBF4C3E22491A7100B31D21 /* OrderCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */; };
+		CEBF4C4022491AD200B31D21 /* OrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBF4C3F22491AD200B31D21 /* OrderCell.swift */; };
+		CEFC3072224CC0A400AD792C /* CheckCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC3071224CC0A400AD792C /* CheckCollection.swift */; };
+		CEFC3074224CC0D200AD792C /* CheckCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEFC3073224CC0D200AD792C /* CheckCell.swift */; };
 		D0C7888F3F6BBBC59EE41D84 /* Pods_CoFace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9123BF664143E60D068BEF25 /* Pods_CoFace.framework */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +98,10 @@
 		CEBF4C372248F97500B31D21 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCollection.swift; sourceTree = "<group>"; };
 		CEBF4C3B2249002E00B31D21 /* PictureCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureCell.swift; sourceTree = "<group>"; };
+		CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCollection.swift; sourceTree = "<group>"; };
+		CEBF4C3F22491AD200B31D21 /* OrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCell.swift; sourceTree = "<group>"; };
+		CEFC3071224CC0A400AD792C /* CheckCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCollection.swift; sourceTree = "<group>"; };
+		CEFC3073224CC0D200AD792C /* CheckCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +203,8 @@
 				2456A411223FB01100C6FCB5 /* categoryListUICell.swift */,
 				24B3905E22478FA80045994E /* ItemUICell.swift */,
 				CEBF4C3B2249002E00B31D21 /* PictureCell.swift */,
+				CEBF4C3F22491AD200B31D21 /* OrderCell.swift */,
+				CEFC3073224CC0D200AD792C /* CheckCell.swift */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -207,6 +217,8 @@
 				2456A40F223F9DF600C6FCB5 /* CategoriesListView.swift */,
 				24B390602247927D0045994E /* ItemCollectionView.swift */,
 				CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */,
+				CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */,
+				CEFC3071224CC0A400AD792C /* CheckCollection.swift */,
 			);
 			path = collections;
 			sourceTree = "<group>";
@@ -425,8 +437,10 @@
 			files = (
 				2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */,
 				24B3905F22478FA80045994E /* ItemUICell.swift in Sources */,
+				CEFC3072224CC0A400AD792C /* CheckCollection.swift in Sources */,
 				CEBF4C3C2249002E00B31D21 /* PictureCell.swift in Sources */,
 				2485F261222D7CA300B48A3E /* guestData.swift in Sources */,
+				CEBF4C3E22491A7100B31D21 /* OrderCollection.swift in Sources */,
 				24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */,
 				24E2406A2239513E0011AB66 /* CategoryPopup.swift in Sources */,
 				24D8857E22200DD8001A402B /* BranchData.swift in Sources */,
@@ -440,6 +454,7 @@
 				24B390612247927D0045994E /* ItemCollectionView.swift in Sources */,
 				24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */,
 				24B43C88223A2E4D00A94915 /* categoryData.swift in Sources */,
+				CEBF4C4022491AD200B31D21 /* OrderCell.swift in Sources */,
 				24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */,
 				2456A410223F9DF600C6FCB5 /* CategoriesListView.swift in Sources */,
 				CEBF4C3A2248FFCD00B31D21 /* PictureCollection.swift in Sources */,
@@ -448,6 +463,7 @@
 				2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */,
 				249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */,
 				2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */,
+				CEFC3074224CC0D200AD792C /* CheckCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
