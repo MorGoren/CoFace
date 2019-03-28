@@ -11,6 +11,7 @@ import Firebase
 
 class ManagerMenue: UIViewController {
 
+    @IBOutlet weak var startView: UIView!
     @IBOutlet weak var BackgroundImage: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
