@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PictureCollection: UIViewController, UICollectionViewDataSource {
+class PictureCollection: UIViewController, UICollectionViewDataSource,removePhoto {
+    
     
     var arrayImages = [guestData]()
     var imageLayout: CollectionFlowLayout!
-    
     @IBOutlet weak var collection: UICollectionView!
     
     override func viewDidLoad() {
@@ -33,10 +33,33 @@ class PictureCollection: UIViewController, UICollectionViewDataSource {
         let url = URL(string: arrayImages[indexPath.row].image)
         cell.layer.borderColor = UIColor.brown.cgColor
         cell.layer.borderWidth = 1 
-        print("url here", url)
+        //print("url here", url)
         cell.image.sd_setImage(with: url, placeholderImage:UIImage(named: "profile"))
+        cell.id = arrayImages[indexPath.row].cid
         //cell.image.frame.size = CGSize(
         return cell
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "pictureSegue" {
+            let destinationVC = segue.destination as! OrderCollection
+            let cell = sender as! PictureCell
+            destinationVC.order = cell.id
+            destinationVC.index = findIndex(id: cell.id)
+            destinationVC.re = self
+        }
+    }
+    
+    func remove(index: Int) {
+        arrayImages.remove(at: index)
+        collection?.reloadData()
+    }
+    
+    private func findIndex(id: String)-> Int{
+        var i = 0
+        while arrayImages[i].cid != id{
+            i+=1
+        }
+        return i
+    }
 }

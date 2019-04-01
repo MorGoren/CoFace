@@ -12,15 +12,28 @@ import Firebase
 class ManagerMenue: UIViewController {
 
     @IBOutlet weak var BackgroundImage: UIImageView!
+    @IBOutlet weak var startButton: UIButton!
+    @IBAction func startAction(_ sender: Any) {
+        startButton.pulseAnimation()
+    }
+    
+    @IBAction func menuAction(_ sender: Any) {
+        menuButton.pulseAnimation()
+    }
+    
+    @IBOutlet weak var menuButton: UIButton!
+    
+    @IBOutlet weak var guestButton: UIButton!
+    @IBAction func guestAction(_ sender: Any) {
+        guestButton.pulseAnimation()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         BackgroundSetup()
-        //BranchData.shared.loadMyItems()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //BranchData.shared.loadMyItems()
+        startButton.threeDButton()
+        menuButton.threeDButton()
+        guestButton.threeDButton()
     }
     
     private func BackgroundSetup(){

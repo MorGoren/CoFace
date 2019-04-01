@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		240110CE2250B751006FBB7B /* UIButtonextention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240110CD2250B751006FBB7B /* UIButtonextention.swift */; };
+		240110D02250BE1B006FBB7B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 240110CF2250BE1B006FBB7B /* StartView.swift */; };
 		2402A5B622035F03000C466C /* SignUpUITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2402A5B522035F03000C466C /* SignUpUITest.swift */; };
 		2404524F223E8F7100C6C589 /* itemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2404524E223E8F7100C6C589 /* itemData.swift */; };
 		2438AA26220C29ED0091310D /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2438AA25220C29ED0091310D /* MainNavigationController.swift */; };
@@ -26,11 +28,13 @@
 		24B3905F22478FA80045994E /* ItemUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B3905E22478FA80045994E /* ItemUICell.swift */; };
 		24B390612247927D0045994E /* ItemCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B390602247927D0045994E /* ItemCollectionView.swift */; };
 		24B39064224793AF0045994E /* ItemPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B39063224793AF0045994E /* ItemPopup.swift */; };
-		24B43C88223A2E4D00A94915 /* categoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24B43C87223A2E4D00A94915 /* categoryData.swift */; };
 		24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */; };
 		24D14924223924C100DA0FE5 /* CategoreyCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */; };
 		24D1492B22392AB200DA0FE5 /* CategoryUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D1492A22392AB200DA0FE5 /* CategoryUICell.swift */; };
 		24D607A1224D642F00C57C9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24D607A0224D642F00C57C9E /* GoogleService-Info.plist */; };
+		24D607A3224D657B00C57C9E /* OrderToDoUICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D607A2224D657B00C57C9E /* OrderToDoUICell.swift */; };
+		24D607A5224D66DB00C57C9E /* OrderToDoCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D607A4224D66DB00C57C9E /* OrderToDoCollection.swift */; };
+		24D607A7224E0C6300C57C9E /* OrderReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D607A6224E0C6300C57C9E /* OrderReadyView.swift */; };
 		24D8857E22200DD8001A402B /* BranchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D8857D22200DD8001A402B /* BranchData.swift */; };
 		24E0D37921FB505F00A2263A /* dorianclm-book-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */; };
 		24E0D37A21FB505F00A2263A /* maklot_ez.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24E0D37721FB41FA00A2263A /* maklot_ez.ttf */; };
@@ -57,6 +61,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		240110CD2250B751006FBB7B /* UIButtonextention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonextention.swift; sourceTree = "<group>"; };
+		240110CF2250BE1B006FBB7B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
 		2402A5B322035F03000C466C /* SignUpUITest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SignUpUITest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2402A5B522035F03000C466C /* SignUpUITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpUITest.swift; sourceTree = "<group>"; };
 		2402A5B722035F03000C466C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -82,11 +88,13 @@
 		24B3905E22478FA80045994E /* ItemUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemUICell.swift; sourceTree = "<group>"; };
 		24B390602247927D0045994E /* ItemCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCollectionView.swift; sourceTree = "<group>"; };
 		24B39063224793AF0045994E /* ItemPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPopup.swift; sourceTree = "<group>"; };
-		24B43C87223A2E4D00A94915 /* categoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryData.swift; sourceTree = "<group>"; };
 		24D1492122391ED600DA0FE5 /* BackgroundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundImageView.swift; sourceTree = "<group>"; };
 		24D14923223924C100DA0FE5 /* CategoreyCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoreyCollectionView.swift; sourceTree = "<group>"; };
 		24D1492A22392AB200DA0FE5 /* CategoryUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUICell.swift; sourceTree = "<group>"; };
 		24D607A0224D642F00C57C9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		24D607A2224D657B00C57C9E /* OrderToDoUICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderToDoUICell.swift; sourceTree = "<group>"; };
+		24D607A4224D66DB00C57C9E /* OrderToDoCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderToDoCollection.swift; sourceTree = "<group>"; };
+		24D607A6224E0C6300C57C9E /* OrderReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderReadyView.swift; sourceTree = "<group>"; };
 		24D8857D22200DD8001A402B /* BranchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchData.swift; sourceTree = "<group>"; };
 		24E0D37721FB41FA00A2263A /* maklot_ez.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = maklot_ez.ttf; sourceTree = "<group>"; };
 		24E0D37821FB41FA00A2263A /* dorianclm-book-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "dorianclm-book-webfont.ttf"; sourceTree = "<group>"; };
@@ -135,7 +143,6 @@
 		2404524D223E7C8800C6C589 /* arrayType */ = {
 			isa = PBXGroup;
 			children = (
-				24B43C87223A2E4D00A94915 /* categoryData.swift */,
 				2485F260222D7CA300B48A3E /* guestData.swift */,
 				2404524E223E8F7100C6C589 /* itemData.swift */,
 			);
@@ -150,6 +157,8 @@
 				24D149262239257500DA0FE5 /* collections */,
 				24D149252239254500DA0FE5 /* cells */,
 				2480D76C21E610F800FCCB93 /* ViewController.swift */,
+				240110CF2250BE1B006FBB7B /* StartView.swift */,
+				24D607A6224E0C6300C57C9E /* OrderReadyView.swift */,
 				24510F8C2208DEAC008178BC /* AddGuessViewController.swift */,
 				24B39063224793AF0045994E /* ItemPopup.swift */,
 				249FCB2D2209E5A700185449 /* ManagerMenueViewController.swift */,
@@ -219,6 +228,7 @@
 				CEBF4C392248FFCD00B31D21 /* PictureCollection.swift */,
 				CEBF4C3D22491A7100B31D21 /* OrderCollection.swift */,
 				CEFC3071224CC0A400AD792C /* CheckCollection.swift */,
+				24D607A4224D66DB00C57C9E /* OrderToDoCollection.swift */,
 			);
 			path = collections;
 			sourceTree = "<group>";
@@ -230,6 +240,8 @@
 				24E0D37B21FD0F0C00A2263A /* RoundButton.swift */,
 				2485F257222D47BE00B48A3E /* CollectionFlowLayout.swift */,
 				24E0D37D21FDABF200A2263A /* RoundTextField.swift */,
+				24D607A2224D657B00C57C9E /* OrderToDoUICell.swift */,
+				240110CD2250B751006FBB7B /* UIButtonextention.swift */,
 			);
 			path = setups;
 			sourceTree = "<group>";
@@ -440,27 +452,31 @@
 				24B3905F22478FA80045994E /* ItemUICell.swift in Sources */,
 				CEFC3072224CC0A400AD792C /* CheckCollection.swift in Sources */,
 				CEBF4C3C2249002E00B31D21 /* PictureCell.swift in Sources */,
+				24D607A3224D657B00C57C9E /* OrderToDoUICell.swift in Sources */,
 				2485F261222D7CA300B48A3E /* guestData.swift in Sources */,
 				CEBF4C3E22491A7100B31D21 /* OrderCollection.swift in Sources */,
 				24E0D37E21FDABF200A2263A /* RoundTextField.swift in Sources */,
 				24E2406A2239513E0011AB66 /* CategoryPopup.swift in Sources */,
 				24D8857E22200DD8001A402B /* BranchData.swift in Sources */,
 				2485F258222D47BE00B48A3E /* CollectionFlowLayout.swift in Sources */,
+				240110CE2250B751006FBB7B /* UIButtonextention.swift in Sources */,
 				24510F8D2208DEAC008178BC /* AddGuessViewController.swift in Sources */,
 				2456A412223FB01100C6FCB5 /* categoryListUICell.swift in Sources */,
 				24E0D37C21FD0F0C00A2263A /* RoundButton.swift in Sources */,
 				2404524F223E8F7100C6C589 /* itemData.swift in Sources */,
 				24D14924223924C100DA0FE5 /* CategoreyCollectionView.swift in Sources */,
+				240110D02250BE1B006FBB7B /* StartView.swift in Sources */,
 				2485F256222D40C000B48A3E /* GuestUICell.swift in Sources */,
 				24B390612247927D0045994E /* ItemCollectionView.swift in Sources */,
 				24D1492222391ED600DA0FE5 /* BackgroundImageView.swift in Sources */,
-				24B43C88223A2E4D00A94915 /* categoryData.swift in Sources */,
 				CEBF4C4022491AD200B31D21 /* OrderCell.swift in Sources */,
 				24AC06F6220B136000333ACB /* GuestListViewController.swift in Sources */,
 				2456A410223F9DF600C6FCB5 /* CategoriesListView.swift in Sources */,
+				24D607A5224D66DB00C57C9E /* OrderToDoCollection.swift in Sources */,
 				CEBF4C3A2248FFCD00B31D21 /* PictureCollection.swift in Sources */,
 				24D1492B22392AB200DA0FE5 /* CategoryUICell.swift in Sources */,
 				24B39064224793AF0045994E /* ItemPopup.swift in Sources */,
+				24D607A7224E0C6300C57C9E /* OrderReadyView.swift in Sources */,
 				2480D76D21E610F800FCCB93 /* ViewController.swift in Sources */,
 				249FCB2E2209E5A700185449 /* ManagerMenueViewController.swift in Sources */,
 				2480D76B21E610F800FCCB93 /* AppDelegate.swift in Sources */,

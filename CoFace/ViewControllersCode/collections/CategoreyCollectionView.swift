@@ -11,7 +11,7 @@ import SDWebImage
 
 class CategoryCollectionView: UIViewController, UICollectionViewDataSource{
     
-    var categories : [categoryData]!
+    var categories : [itemData]!
     var flowLayout: CollectionFlowLayout!
     //var categoryItems: String!
     @IBOutlet weak var collection: UICollectionView!
@@ -48,7 +48,7 @@ class CategoryCollectionView: UIViewController, UICollectionViewDataSource{
         cell.layer.borderColor = UIColor.brown.cgColor
         cell.layer.borderWidth = 1
         let index = indexPath.row
-        cell.cid = categories[index].cid
+        cell.cid = categories[index].id
         if cell.cid != nil {
             cell.categoryLabel.text = categories[index].name
             cell.image = categories[index].image

@@ -11,7 +11,7 @@ import SDWebImage
 
 class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshCollection, back{
     
-    var categoriesList: [categoryData]!
+    var categoriesList: [itemData]!
     var flowLayout: CollectionFlowLayout!
     
     @IBAction func addAction(_ sender: Any) {
@@ -54,7 +54,7 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
         cell.layer.borderColor = UIColor.brown.cgColor
         cell.layer.borderWidth = 1
         let index = indexPath.row
-        cell.cid = categoriesList[index].cid
+        cell.cid = categoriesList[index].id
         cell.go = self
         if cell.image != nil {
             cell.label.text = categoriesList[index].name

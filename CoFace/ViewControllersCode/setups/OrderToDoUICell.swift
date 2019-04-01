@@ -1,22 +1,18 @@
 //
-//  CheckCell.swift
+//  OrderToDoUICell.swift
 //  CoFace
 //
-//  Created by User on 28/03/2019.
+//  Created by Timur Misharin on 28/03/2019.
 //  Copyright © 2019 MorGoren. All rights reserved.
 //
 
 import UIKit
 
-class CheckCell: UICollectionViewCell {
-    
+class OrderToDoUICell: UICollectionViewCell {
     @IBOutlet weak var image: UIImageView!
-    var id: String!
-    var index: IndexPath!
     
     override func prepareForReuse() {
+        super.prepareForReuse()
         self.image = nil
-        self.id = nil
-        self.index = nil
     }
 }
