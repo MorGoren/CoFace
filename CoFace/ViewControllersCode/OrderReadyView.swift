@@ -10,10 +10,12 @@ import UIKit
 
 class OrderReadyView: UIViewController {
 
-    @IBOutlet weak var profile: UIImageView!
-    @IBOutlet weak var checkButton: UIButton!
-    @IBAction func checkAction(_ sender: Any) {
-        checkButton.pulseAnimation()
+    @IBOutlet weak var background: UIImageView!
+    var profile: UIImageView!
+    var check: UIButton!
+    var frame = UIScreen.main.bounds
+    @objc func checkAction() {
+        check.pulseAnimation()
         BranchData.shared.removeOrder(id: currentOrder)
         orderList.removeValue(forKey: currentOrder)
         let first = Array(orderList.keys).first
@@ -22,7 +24,7 @@ class OrderReadyView: UIViewController {
             profile.sd_setImage(with: URL(string: orderList[currentOrder]!), placeholderImage: UIImage(named: "profile"))
         }
         else{
-            checkButton.isHidden = true
+            check.isHidden = true
             profile.isHidden = true
             let actionSheet = UIAlertController(title: "מעולה!", message: "הפעילות נגמרה, אין עוד הזמנות", preferredStyle: .actionSheet)
             if let popoverController = actionSheet.popoverPresentationController {
@@ -44,11 +46,15 @@ class OrderReadyView: UIViewController {
     var orderList = [String: String]()
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkButton.isHidden = true
+        check = addButton()
+        check.isHidden = true
+        profile = addImage()
         profile.isHidden = true
         currentOrder = "nil"
         timerPreper()
-        profile.layer.cornerRadius = profile.frame.height / 2
+        BackgroundSetup()
+        self.view.addSubview(check)
+        self.view.addSubview(profile)
     }
     
     private func timerPreper(){
@@ -59,7 +65,7 @@ class OrderReadyView: UIViewController {
     @objc func timerPerform(){
         BranchData.shared.nextOrderReady(dictionary: orderList, cid: currentOrder) { (order, orderid) in
             self.orderList[orderid] = order
-            self.checkButton.isHidden = false
+            self.check.isHidden = false
             self.profile.isHidden = false
             print("my order list", self.orderList)
             if self.currentOrder == "nil"{
@@ -68,4 +74,24 @@ class OrderReadyView: UIViewController {
             }
         }
     }
+    
+    private func addButton() -> UIButton{
+        let button = UIButton(frame: CGRect(x: frame.minX+50, y: frame.maxY/3+50, width: frame.width/4, height: frame.width/4))
+        button.setImage(UIImage(named: "checkButton"), for: .normal)
+        button.addTarget(self, action: #selector(checkAction), for: .touchUpInside)
+        button.layer.cornerRadius = button.frame.size.height / 2
+        button.backgroundColor = .clear
+        return button
+    }
+    
+    private func addImage() -> UIImageView{
+        let image = UIImageView(frame: CGRect(x: frame.maxX/2, y: frame.maxY/3, width: frame.maxX/2, height: frame.maxX/2))
+        image.layer.cornerRadius = image.frame.height/2
+        return image
+    }
+    
+    private func BackgroundSetup(){
+        background.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    }
+
 }

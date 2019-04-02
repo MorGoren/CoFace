@@ -22,19 +22,20 @@ class ViewController: UIViewController, UITextFieldDelegate{
     var code: UITextField!
     var enter: UIButton!
     var warning: UILabel!
+    var segment: UISegmentedControl!
+    var frame = UIScreen.main.bounds
     @IBOutlet weak var BackgraoundImage: UIImageView!
-    @IBOutlet weak var optionControl: UISegmentedControl!
-    @IBAction func optionAction(_ sender: UISegmentedControl) {
+    @objc func segmentAction(_ sender: UISegmentedControl) {
         removeAllViews()
         switch sender.selectedSegmentIndex {
-        case 2:
+        case 0:
             signViewSetup()
             break
         case 1:
             print("my random->", randomCode())
             logViewSetup()
             break
-        case 0:
+        case 2:
             codeViewSetup()
             break
         default:
@@ -45,10 +46,12 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let x = optionControl.frame.origin.x
-        let y = optionControl.frame.origin.y  + optionControl.frame.height + 20
-        let width = optionControl.frame.width
-        let height = optionControl.frame.height
+        BackgraoundSetup()
+        segment = addSegmetControl()
+        let x = segment.frame.origin.x
+        let y = segment.frame.origin.y  + segment.frame.height + 20
+        let width = segment.frame.width
+        let height = segment.frame.height
         places.append(CGRect(x: x, y: y, width: width, height: height))
         places.append(CGRect(x: x, y: height + y + 10, width: width, height: height))
         places.append(CGRect(x: x, y:  2 * height + y + 20, width: width, height: height))
@@ -63,6 +66,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         code = addTextField(place: 0, fontSize: 20.0, placeholder: "קוד", secure: false)
         enter = addButton()
         warning = addLabel()
+        self.view.addSubview(segment)
         self.view.addSubview(city)
         self.view.addSubview(email)
         self.view.addSubview(password)
@@ -81,6 +85,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         WarningLableSetup()
         BackgraoundSetup()*/
     }
+    
     
     private func logViewSetup(){
         email.frame = places[0]
@@ -106,6 +111,21 @@ class ViewController: UIViewController, UITextFieldDelegate{
         code.frame = places[0]
         self.view.addSubview(code)
         self.view.reloadInputViews()
+    }
+    
+    private func addSegmetControl()-> UISegmentedControl{
+        //let items = ["קוד", "התחברות", "הרשמה"]
+        let items = ["הרשמה", "התחברות", "קוד"]
+        let segment = UISegmentedControl(items: items)
+        segment.selectedSegmentIndex = 0
+        segment.backgroundColor = .white
+        segment.layer.borderColor = UIColor.green.cgColor
+        let frame = UIScreen.main.bounds
+        segment.frame = CGRect(x: frame.maxX/2, y: frame.maxY/3,
+                                width: frame.width/2, height: frame.height*0.025)
+        segment.layer.cornerRadius = 5.0
+        segment.addTarget(self, action: #selector(segmentAction), for: .valueChanged)
+        return segment
     }
     
     private func addTextField(place: Int, fontSize: Float, placeholder: String , secure: Bool) -> UITextField{
@@ -153,14 +173,14 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
     @objc func enterAction(sender: UIButton){
         sender.pulseAnimation()
-        switch optionControl.selectedSegmentIndex{
-        case 2:
+        switch segment.selectedSegmentIndex{
+        case 0:
             signupTrigger()
             break
         case 1:
             loginTrigger()
             break
-        case 0:
+        case 2:
             codeTrigger()
             break
         default:
@@ -396,14 +416,9 @@ class ViewController: UIViewController, UITextFieldDelegate{
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         return String((0..<6).map{ _ in letters.randomElement()! })
     }
-    /*private func BackgraoundSetup(){
-        if UIDevice.current.orientation.isLandscape {
-            BackgraoundImage.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.height)
-        }
-        else{
-        BackgraoundImage.frame = CGRect(x: 0, y: 0, width: 2*(UIScreen.main.bounds.width/3), height: UIScreen.main.bounds.height)
-        }
-    }*/
+    private func BackgraoundSetup(){
+        BackgraoundImage.frame = CGRect(x: frame.minX, y: frame.minY, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    }
     
     private func blurdView(){
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)

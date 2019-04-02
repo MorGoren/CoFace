@@ -158,7 +158,7 @@ class BranchData {
     func addOrder(order: [String: itemData], id: String){
         print("my order", order, "my id", id)
         databaseRef = Database.database().reference()
-        for (key, value) in order{
+        for (key, _) in order{
             let it = ["name": order[key]?.name, "photoURL": order[key]?.image]
             databaseRef.root.child("OrderToDo/\(branch ?? "defult")/\(id)").child(order[key]!.id).setValue(it)
         }

@@ -16,11 +16,10 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var cat = BranchData.shared.categoryList
     var re : refreshCollection?
 
-    @IBAction func cancelAction(_ sender: Any) {
+    @objc func cancelAction(_ sender: Any) {
         self.view.removeFromSuperview()
     }
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBAction func ImageAction(_ sender: Any) {
+    @objc func imageAction(_ sender: Any) {
         let imagePicketController = UIImagePickerController()
         imagePicketController.delegate = self
         let actionSheet = UIAlertController(title: "Photo Source", message: nil, preferredStyle: .actionSheet)
@@ -42,13 +41,20 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var categoryName: RoundTextField!
-    @IBOutlet weak var add: UIButton!
-    @IBAction func addAction(_ sender: Any) {
+
+    var cancel: UIButton!
+    var add: UIButton!
+    var category: String!
+    var order: UILabel!
+    var name: UITextField!
+    var image: UIButton!
+    var popup: UIView!
+    var frame = UIScreen.main.bounds
+    @objc func addAction(_ sender: Any) {
         bluredEffect()
         if checkWhatEmpty() {
-            let new = ["name": categoryName.text]
-            BranchData.shared.addCategoryList(category: new as [String : Any], image: categoryButton.currentImage! , completion: {check in
+            let new = ["name": name.text]
+            BranchData.shared.addCategoryList(category: new as [String : Any], image: image.currentImage! , completion: {check in
                 if check != "no"{
                     self.re?.refresh()
                     self.view.removeFromSuperview()
@@ -62,11 +68,31 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Setup()
-    }
-    
-    private func Setup(){
-        add.frame.size = CGSize(width: 50, height: 50)
+        let x = frame.maxX/3
+        var y = frame.maxX/3
+        var width = y
+        let height = 1.2*width
+        popup = UIView(frame: CGRect(x: frame.maxX/3, y: frame.maxY/3, width: width, height: height))
+        popup.backgroundColor = UIColor.init(red: 253, green: 185, blue: 40, alpha: 0.80)
+        order = addLabel(text: "הקש לבחירת תמונה", place: CGRect(x: x, y: 1.3*y+height/10, width: width, height: height/20), font: 15)
+        order.textAlignment = .center
+        image = addButton(name: "image", place: CGRect(x: x, y: 1.3*y+height/20, width: width, height: height/2))
+        image.addTarget(self, action: #selector(imageAction), for: .touchUpInside)
+        y = image.frame.maxY
+        name = addTextField(fontSize: 15, placeholder: "פריט חדש", secure: false, place: CGRect(x: x, y: y, width: width, height: height/15))
+        y = y+height/10
+        width = height/5
+        add = addRoundButton(name: "add", place: CGRect(x: popup.frame.maxX-width, y: y, width: width, height: width))
+        add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
+        cancel = addRoundButton(name: "delete", place: CGRect(x: popup.frame.minX, y: y, width: width, height: width))
+        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        popup.layer.cornerRadius = 20
+        self.view.addSubview(popup)
+        self.view.addSubview(image)
+        self.view.addSubview(order)
+        self.view.addSubview(name)
+        self.view.addSubview(add)
+        self.view.addSubview(cancel)
     }
     
     private func bluredEffect(){
@@ -79,8 +105,8 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     private func checkWhatEmpty()-> Bool{
-        if categoryName != nil{
-            if categoryButton.imageView?.image != UIImage(named: "image"){
+        if name != nil{
+            if image.imageView?.image != UIImage(named: "image"){
                 return true
             }
             return false
@@ -94,10 +120,54 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            categoryButton.setImage(pickedImage, for: .normal)
-            categoryButton.layer.borderWidth = 10
-            categoryButton.layer.borderColor = UIColor.black.cgColor
+            image.setImage(pickedImage, for: .normal)
+            image.layer.borderWidth = 10
+            image.layer.borderColor = UIColor.black.cgColor
         }
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    private func addLabel(text: String, place: CGRect, font: Int) -> UILabel{
+        let label = UILabel(frame: place)
+        label.text = text
+        label.textColor = .black
+        label.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        label.backgroundColor = UIColor.init(
+            white: CGFloat(1.0), alpha: CGFloat(0.80))
+        label.layer.cornerRadius = label.frame.height/2
+        return label
+    }
+    
+    private func addButton(name: String, place: CGRect) -> UIButton{
+        let button = UIButton(frame: place)
+        button.setImage(UIImage(named: name), for: .normal)
+        button.backgroundColor = .clear
+        return button
+    }
+    private func addRoundButton(name: String, place: CGRect) -> UIButton{
+        let button = UIButton(frame: place)
+        button.setImage(UIImage(named: name), for: .normal)
+        button.layer.cornerRadius = button.frame.size.height/2
+        button.backgroundColor = .clear
+        return button
+    }
+    
+    private func addTextField(fontSize: Float, placeholder: String , secure: Bool, place: CGRect) -> UITextField{
+        let textField =  UITextField(frame: place)
+        textField.placeholder = placeholder
+        textField.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        textField.borderStyle = UITextField.BorderStyle.roundedRect
+        textField.autocorrectionType = UITextAutocorrectionType.no
+        textField.keyboardType = UIKeyboardType.default
+        textField.returnKeyType = UIReturnKeyType.done
+        textField.textAlignment = .right
+        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
+        textField.isSecureTextEntry = secure
+        textField.tag = 1
+        textField.layer.borderColor = UIColor.black.cgColor
+        textField.textColor = .black
+        textField.backgroundColor = UIColor.init(
+            white: CGFloat(1.0), alpha: CGFloat(0.56))
+        return textField
     }
 }

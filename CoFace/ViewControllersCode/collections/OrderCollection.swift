@@ -14,16 +14,18 @@ protocol removePhoto: class{
 
 class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem {
     
+    @IBOutlet weak var background: UIImageView!
     var arrayImages = [String: itemData]()
     var cellChange = [String]()
     var imageLayout: CollectionFlowLayout!
     var order: String!
     var index: Int!
     var re: removePhoto?
+    var frame = UIScreen.main.bounds
     @IBOutlet weak var collection: UICollectionView!
-    @IBOutlet weak var checkButton: UIButton!
-    @IBAction func checkAction(_ sender: Any) {
-        checkButton.pulseAnimation()
+    var check: UIButton!
+    @objc func checkAction() {
+        check.pulseAnimation()
         BranchData.shared.addOrder(order: arrayImages, id: order)
         re?.remove(index: index)
         self.navigationController?.popViewController(animated: true)
@@ -31,15 +33,19 @@ class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkButton.isHidden = true
         imageLayout = CollectionFlowLayout()
         imageLayout.numberOfItem = 2
         collection.collectionViewLayout = imageLayout
         let array = BranchData.shared.myCategories
         for categoer in array {
             arrayImages[categoer.id] = categoer
+            print("my category", arrayImages)
         }
+        collection.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
         collection?.reloadData()
+        check = addButton()
+        check.isHidden = true
+        self.view.addSubview(check)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -69,9 +75,9 @@ class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem 
         }
     }
     
-    private func check(){
+    private func orderReady(){
         if cellChange.count == arrayImages.count{
-            checkButton.isHidden = false
+            check.isHidden = false
         }
     }
     
@@ -87,8 +93,23 @@ class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem 
         if !cellChange.contains(category){
             cellChange.append(category)
         }
-        check()
+        orderReady()
         arrayImages[category] = cell
         collection.reloadData()
     }
+    
+    private func BackgroundSetup(){
+        background.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+    }
+    
+    private func addButton() -> UIButton{
+        let size = frame.height/10
+        let button = UIButton(frame: CGRect(x: frame.maxX/2-size/2, y: frame.maxY/2-size/2, width: size, height: size))
+        button.setImage(UIImage(named: "checkButton"), for: .normal)
+        button.addTarget(self, action: #selector(checkAction), for: .touchUpInside)
+        button.layer.cornerRadius = button.frame.size.height / 2
+        button.backgroundColor = .clear
+        return button
+    }
+
 }

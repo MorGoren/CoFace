@@ -14,9 +14,12 @@ class PictureCollection: UIViewController, UICollectionViewDataSource,removePhot
     var arrayImages = [guestData]()
     var imageLayout: CollectionFlowLayout!
     @IBOutlet weak var collection: UICollectionView!
+    var frame = UIScreen.main.bounds
+    @IBOutlet weak var background: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        collection.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
         imageLayout = CollectionFlowLayout()
         imageLayout.numberOfItem = 2
         collection.collectionViewLayout = imageLayout
@@ -32,8 +35,7 @@ class PictureCollection: UIViewController, UICollectionViewDataSource,removePhot
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! PictureCell
         let url = URL(string: arrayImages[indexPath.row].image)
         cell.layer.borderColor = UIColor.brown.cgColor
-        cell.layer.borderWidth = 1 
-        //print("url here", url)
+        cell.layer.borderWidth = 1
         cell.image.sd_setImage(with: url, placeholderImage:UIImage(named: "profile"))
         cell.id = arrayImages[indexPath.row].cid
         //cell.image.frame.size = CGSize(
@@ -61,5 +63,9 @@ class PictureCollection: UIViewController, UICollectionViewDataSource,removePhot
             i+=1
         }
         return i
+    }
+    
+    private func BackgroundSetup(){
+        background.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
 }

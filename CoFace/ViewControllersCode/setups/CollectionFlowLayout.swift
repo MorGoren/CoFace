@@ -27,7 +27,8 @@ class CollectionFlowLayout: UICollectionViewFlowLayout {
         get {
             let numberofColumns: CGFloat = numberOfItem
             let itemWidth = (self.collectionView!.frame.width - (numberofColumns - 1)) / numberofColumns
-            return CGSize(width: itemWidth, height: itemWidth)
+            let itemHeight = (self.collectionView!.frame.width - (numberofColumns - 1)) / 2
+            return CGSize(width: itemWidth, height: itemHeight)
         }
     }
     func setUpLayout(){

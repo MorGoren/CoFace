@@ -10,9 +10,10 @@ import UIKit
 
 class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
     
-    @IBOutlet weak var checkButton: UIButton!
-    @IBAction func checkAction(_ sender: Any) {
-        checkButton.pulseAnimation()
+    var check: UIButton!
+    var frame = UIScreen.main.bounds
+    @objc func checkAction(_ sender: Any) {
+        check.pulseAnimation()
         BranchData.shared.moveToReady(id: currentOrder)
         keys.removeFirst()
         if keys.first != nil{
@@ -22,8 +23,8 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
         }
         else{
             items.removeAll()
-            collection.isHidden = true
-            checkButton.isHidden = true
+            check.isHidden = true
+            check.isHidden = true
              let actionSheet = UIAlertController(title: "מעולה!", message: "הפעילות נגמרה, אין עוד הזמנות", preferredStyle: .actionSheet)
             if let popoverController = actionSheet.popoverPresentationController {
                 popoverController.sourceView = self.view
@@ -50,16 +51,15 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        checkButton.isHidden = true
-        checkButton.frame.size = CGSize(width: 100, height: 100)
-        checkButton.layer.cornerRadius = checkButton.frame.height / 2
-        checkButton.layer.borderColor = UIColor.black.cgColor
-        checkButton.layer.borderWidth = 2
+        check = addButton()
+        check.isHidden = true
         flowLayout = CollectionFlowLayout()
         flowLayout.numberOfItem = 2
         collection.collectionViewLayout = flowLayout
+        collection.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
         currentOrder = "nil"
         timerPreper()
+        self.view.addSubview(check)
     }
     
     private func timerPreper(){
@@ -75,7 +75,7 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
                 self.currentOrder = orderid
                 self.items = order
                 self.collection?.reloadData()
-                self.checkButton.isHidden = false
+                self.check.isHidden = false
             }
             self.keys.append(orderid)
         }
@@ -98,5 +98,15 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
             cell.layer.borderWidth = 1
         }
         return cell
+    }
+    
+    private func addButton() -> UIButton{
+        let size = frame.height/10
+        let button = UIButton(frame: CGRect(x: frame.maxX/2-size/2, y: frame.maxY/2-size/2, width: size, height: size))
+        button.setImage(UIImage(named: "checkButton"), for: .normal)
+        button.addTarget(self, action: #selector(checkAction), for: .touchUpInside)
+        button.layer.cornerRadius = button.frame.size.height / 2
+        button.backgroundColor = .clear
+        return button
     }
 }
