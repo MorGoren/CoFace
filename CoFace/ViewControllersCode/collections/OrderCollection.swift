@@ -33,6 +33,14 @@ class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        background.translatesAutoresizingMaskIntoConstraints = false
+        background.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        background.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        background.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        collection.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        collection.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         imageLayout = CollectionFlowLayout()
         imageLayout.numberOfItem = 2
         collection.collectionViewLayout = imageLayout
@@ -54,6 +62,10 @@ class OrderCollection: UIViewController, UICollectionViewDataSource, returnItem 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! OrderCell
+        cell.image.translatesAutoresizingMaskIntoConstraints = false
+        cell.image.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+        cell.image.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
+        cell.image.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
         let item = getvalue(place: indexPath.row)
         let url = URL(string: item.image)
         cell.frame.size.width = UIScreen.main.bounds.width / 2

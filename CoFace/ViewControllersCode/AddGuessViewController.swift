@@ -8,17 +8,6 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
     var ProtocolMess: String!
     var ImagePicker:  UIImagePickerController!
     @IBOutlet weak var BackgroundImage: UIImageView!
-    /*@IBOutlet weak var FirstNameTextField: RoundTextField!
-    @IBOutlet weak var LastNameTextFielld: RoundTextField!
-    @IBOutlet weak var EyeMonitorLable: UILabel!
-    @IBOutlet weak var EyeMonitorSwitch: UISwitch!
-    @IBOutlet weak var AddButton: UIButton!
-    @IBOutlet weak var WarningLable: UILabel!
-    @IBOutlet weak var ImagePickButton: UIButton!
-    @IBOutlet weak var FieldsView: UIView!
-    @IBOutlet weak var OrderLable: UILabel!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!*/
-    
     var last: UITextField!
     var first: UITextField!
     var eyeLabel: UILabel!
@@ -28,7 +17,10 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
     var profile: UIButton!
     var warning: UILabel!
     var frame = UIScreen.main.bounds
+    var font: Int!
+    var guestEdit: guestData!
     @objc func addAction() {
+        add.pulseAnimation()
         if CheckWhatEmpty() {
             let firstName = first.text
             let lastName =  last.text
@@ -39,16 +31,21 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
             else{
                 eye = false
             }
-            let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye" : eye]
+            let guest: [String : Any] = ["first name" : firstName!, "last name" : lastName!, "eye" : eye!]
             let image = profile.currentImage!
             activitySetup()
-            BranchData.shared.addGuest(guest: guest, image: image){ check in
-                if check != "no" {
-                    self.navigationController?.popViewController(animated: true)
+            if guestEdit == nil{
+                BranchData.shared.addGuest(guest: guest, image: image){ check in
+                    if check != "no" {
+                        self.navigationController?.popViewController(animated: true)
+                    }
+            else {
+                sleep(1)
+                    }
                 }
-                else {
-                    sleep(1)
-                }
+            }
+            else{
+
             }
             
         }
@@ -83,30 +80,44 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFont()
         var size = frame.height/5
         var x = frame.maxX/2 - size/2
         let ly = size
         profile = addButton(name: "profile", place: CGRect(x: x, y: size, width: size, height: size))
         profile.addTarget(self, action: #selector(profileAction), for: .touchUpInside)
         var y = 2.05*ly
-        order = addLabel(text: "הקש לבחירת תמונה", place: CGRect(x: x, y: y, width: size, height: size/5), font: 25)
+        order = addLabel(text: "הקש לבחירת תמונה", place: CGRect(x: x, y: y, width: size, height: size/5))
+        order.textAlignment = .center
         size = frame.width/2
         x = frame.midX-size/2
         y = 2.05*ly+0.3*ly
-        first = addTextField(fontSize: 25.0, placeholder: "שם פרטי", secure: false, place: CGRect(x: x, y: y, width: size, height: size/10))
+        first = addTextField(placeholder: "שם פרטי", secure: false, place: CGRect(x: x, y: y, width: size, height: size/10))
         y = 2.05*ly+0.3*ly+size/10+10
-        last = addTextField(fontSize: 25.0, placeholder: "שם משפחה", secure: false, place: CGRect(x: x, y: y, width: size, height: size/10))
+        last = addTextField(placeholder: "שם משפחה", secure: false, place: CGRect(x: x, y: y, width: size, height: size/10))
         y = 2.05*ly+0.3*ly+2*(size/10+10)
-        eyeLabel = addLabel(text: "ניטור עיניים?", place: CGRect(x: x+size/2, y: y, width: size/2, height: size/10), font: 25)
+        eyeLabel = addLabel(text: "ניטור עיניים?", place: CGRect(x: x+size/2, y: y, width: size/2, height: size/10))
         eyeSwich = addSwitch(place: CGRect(x: x, y: y, width: size/2, height: size/10))
+        eyeLabel.textAlignment = .center
         y = 2.05*ly+0.3*ly+3*(size/10+10)
         size = frame.width/10
-        add = addButton(name: "add", place: CGRect(x: x, y: y, width: size, height: size))
+        add = addButton(name: "add", place: CGRect(x: x, y: y+frame.width/50, width: size, height: size))
         add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
-        warning = addLabel(text: "", place: CGRect(x: x+size, y: y, width: 3*size, height: 2*size), font: 15)
+        add.backgroundColor = UIColor(white: 1, alpha: 0.8)
+        warning = addLabel(text: "", place: CGRect(x: x+size, y: y, width: 3*size, height: 2*size))
         warning.lineBreakMode = NSLineBreakMode.byWordWrapping
         warning.numberOfLines = 4
         warning.textAlignment = .left
+        if guestEdit != nil {
+            add.setImage(UIImage(named: "edit"), for: .normal)
+            profile.setImage(nil, for: .normal)
+            profile.layer.borderColor = UIColor.black.cgColor
+            profile.layer.borderWidth = 2
+            profile.sd_setBackgroundImage(with: URL(string: guestEdit!.image), for: .normal, completed: nil)
+            first.text = guestEdit.first
+            last.text = guestEdit.last
+            eyeSwich.isOn = (guestEdit.eye != 1)
+        }
         BackgroundSetup()
         ImagePickSetup()
         warning.isHidden = true
@@ -163,7 +174,7 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
         picker.dismiss(animated: true, completion: nil)
     }
     
-    private func addLabel(text: String, place: CGRect, font: Int) -> UILabel{
+    private func addLabel(text: String, place: CGRect) -> UILabel{
         let label = UILabel(frame: place)
         label.text = text
         label.textColor = .black
@@ -182,10 +193,10 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
         return button
     }
     
-    private func addTextField(fontSize: Float, placeholder: String , secure: Bool, place: CGRect) -> UITextField{
+    private func addTextField(placeholder: String , secure: Bool, place: CGRect) -> UITextField{
         let textField =  UITextField(frame: place)
         textField.placeholder = placeholder
-        textField.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
+        textField.font = UIFont.systemFont(ofSize: CGFloat(font))
         textField.borderStyle = UITextField.BorderStyle.roundedRect
         textField.autocorrectionType = UITextAutocorrectionType.no
         textField.keyboardType = UIKeyboardType.default
@@ -197,16 +208,34 @@ class addGuessViewController: UIViewController, UIImagePickerControllerDelegate,
         textField.layer.borderColor = UIColor.black.cgColor
         textField.textColor = .black
         textField.backgroundColor = UIColor.init(
-            white: CGFloat(1.0), alpha: CGFloat(0.56))
+            white: CGFloat(1.0), alpha: CGFloat(0.80))
         return textField
     }
     
+    private func addInbranch(){
+        
+    }
     private func addSwitch(place: CGRect) -> UISwitch{
         let switchDemo = UISwitch(frame: place)
         switchDemo.isOn = false
         switchDemo.setOn(true, animated: false)
         return switchDemo
     }
-
-
+    
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
+    }
 }

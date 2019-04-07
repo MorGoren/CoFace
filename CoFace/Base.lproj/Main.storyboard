@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -13,7 +12,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LogInView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="CoFace" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="CoFace" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +27,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="BackgraoundImage" destination="lG8-Mv-13W" id="nAj-F2-Nb7"/>
+                        <outlet property="background" destination="lG8-Mv-13W" id="Bg1-bc-bsW"/>
                         <segue destination="xgs-dQ-cft" kind="show" identifier="logInSegue" id="kLP-B8-eqp"/>
                     </connections>
                 </viewController>
@@ -316,6 +315,7 @@
                         <viewLayoutGuide key="safeArea" id="nfQ-4b-3PI"/>
                     </view>
                     <connections>
+                        <outlet property="background" destination="6rS-bs-U7m" id="QyG-Dy-CMT"/>
                         <outlet property="collection" destination="T7T-uZ-Um6" id="Uda-8k-B0k"/>
                     </connections>
                 </viewController>
@@ -390,7 +390,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3k6-7a-yCi">
-                                <rect key="frame" x="0.0" y="107" width="1024" height="1187"/>
+                                <rect key="frame" x="0.0" y="74" width="1024" height="1220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hfD-X4-i8A">
@@ -491,6 +491,7 @@
                                                                     <state key="normal" image="edit"/>
                                                                     <connections>
                                                                         <action selector="editButton:" destination="eKb-bb-xuz" eventType="touchUpInside" id="iL9-eo-f5N"/>
+                                                                        <segue destination="LhB-oZ-c7M" kind="show" identifier="edit" id="vI4-tV-WVL"/>
                                                                     </connections>
                                                                 </button>
                                                             </subviews>
@@ -538,10 +539,12 @@
                                             <constraint firstItem="xD2-6H-Eyb" firstAttribute="top" secondItem="eKb-bb-xuz" secondAttribute="topMargin" id="f61-v2-ujo"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="edit" destination="nIX-gG-GVw" id="vUp-OZ-mcF"/>
                                             <outlet property="eyeImage" destination="mH4-1V-rHj" id="d8f-RG-bkJ"/>
-                                            <outlet property="firstNameLabel" destination="UB0-Qa-miF" id="DUm-uJ-Dbd"/>
+                                            <outlet property="firstNameLabel" destination="U5w-My-fXe" id="k0a-DJ-4MR"/>
                                             <outlet property="image" destination="4s6-8n-BIg" id="ZVN-VQ-Pot"/>
-                                            <outlet property="lastNameLabel" destination="U5w-My-fXe" id="Z7j-An-Jbb"/>
+                                            <outlet property="lastNameLabel" destination="UB0-Qa-miF" id="1Zu-bW-05R"/>
+                                            <outlet property="trash" destination="keq-rC-gEJ" id="BAm-xv-OcD"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -724,6 +727,7 @@
                                             <constraint firstItem="gJX-Lc-kDR" firstAttribute="trailing" secondItem="FE0-0d-gr4" secondAttribute="trailing" id="wah-Ak-p1U"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="delete" destination="1dJ-Wb-HgO" id="K9I-wM-Ucc"/>
                                             <outlet property="itemImage" destination="gJX-Lc-kDR" id="5sl-8a-wfq"/>
                                             <outlet property="itemLabel" destination="FE0-0d-gr4" id="5cL-XQ-8xs"/>
                                         </connections>
@@ -794,44 +798,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="vh" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GEZ-lR-T2I">
-                                                    <rect key="frame" x="12" y="281" width="323" height="24"/>
+                                                    <rect key="frame" x="12" y="281.5" width="323" height="23.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7j-pn-Ycs">
-                                                    <rect key="frame" x="272" y="311" width="55" height="55"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="55" id="9Mf-4s-ZkE"/>
-                                                    </constraints>
-                                                    <state key="normal" image="add"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8TI-ge-JOZ">
+                                                    <rect key="frame" x="158.5" y="172.5" width="30" height="30"/>
                                                     <connections>
-                                                        <action selector="addAction:" destination="EHW-pe-Msm" eventType="touchUpInside" id="cdL-xO-Jut"/>
+                                                        <action selector="addAction:" destination="EHW-pe-Msm" eventType="touchUpInside" id="SgM-91-4Cq"/>
                                                     </connections>
                                                 </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zqc-BP-OMa">
-                                                    <rect key="frame" x="12" y="52" width="323" height="198"/>
-                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="1" alpha="0.56000000000000005" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="c7j-pn-Ycs" firstAttribute="top" secondItem="GEZ-lR-T2I" secondAttribute="bottom" constant="6" id="8Fa-NC-uLg"/>
                                             <constraint firstAttribute="bottom" secondItem="GEZ-lR-T2I" secondAttribute="bottom" constant="70" id="EOI-8R-z4v"/>
                                             <constraint firstItem="GEZ-lR-T2I" firstAttribute="leading" secondItem="EHW-pe-Msm" secondAttribute="leadingMargin" constant="4" id="Eiu-gU-ERr"/>
-                                            <constraint firstItem="Zqc-BP-OMa" firstAttribute="top" secondItem="EHW-pe-Msm" secondAttribute="topMargin" constant="20" id="EkJ-sQ-nOE"/>
-                                            <constraint firstAttribute="trailingMargin" secondItem="c7j-pn-Ycs" secondAttribute="trailing" constant="12" id="ISE-RW-jvq"/>
-                                            <constraint firstItem="c7j-pn-Ycs" firstAttribute="bottom" secondItem="EHW-pe-Msm" secondAttribute="bottomMargin" constant="-1" id="Qab-Ih-ph7"/>
-                                            <constraint firstItem="GEZ-lR-T2I" firstAttribute="centerX" secondItem="Zqc-BP-OMa" secondAttribute="centerX" id="Rqj-ou-yvB"/>
-                                            <constraint firstItem="GEZ-lR-T2I" firstAttribute="top" secondItem="Zqc-BP-OMa" secondAttribute="bottom" constant="31" id="TQo-ru-H5S"/>
+                                            <constraint firstItem="GEZ-lR-T2I" firstAttribute="top" secondItem="8TI-ge-JOZ" secondAttribute="bottom" constant="79" id="Kt0-CT-gST"/>
+                                            <constraint firstItem="8TI-ge-JOZ" firstAttribute="centerX" secondItem="GEZ-lR-T2I" secondAttribute="centerX" id="Mpi-yK-g7S"/>
+                                            <constraint firstItem="8TI-ge-JOZ" firstAttribute="centerY" secondItem="EHW-pe-Msm" secondAttribute="centerY" id="XI2-tF-LuD"/>
                                             <constraint firstItem="GEZ-lR-T2I" firstAttribute="centerX" secondItem="EHW-pe-Msm" secondAttribute="centerX" id="b8T-D2-wH7"/>
-                                            <constraint firstItem="GEZ-lR-T2I" firstAttribute="leading" secondItem="Zqc-BP-OMa" secondAttribute="leading" id="j8A-ce-1Ec"/>
                                         </constraints>
                                         <connections>
-                                            <outlet property="addButton" destination="c7j-pn-Ycs" id="LAe-6H-G0C"/>
-                                            <outlet property="image" destination="Zqc-BP-OMa" id="PFM-lP-RHS"/>
-                                            <outlet property="label" destination="GEZ-lR-T2I" id="yS8-sC-1SC"/>
+                                            <outlet property="image" destination="8TI-ge-JOZ" id="3pj-G9-j5J"/>
+                                            <outlet property="label" destination="GEZ-lR-T2I" id="2JB-vV-ugV"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -904,7 +895,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Ran-In-5hR"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="npQ-Z3-Iau">
-                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -918,11 +908,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add" width="100" height="100"/>
-        <image name="background3" width="459" height="692"/>
-        <image name="coffee" width="3333" height="3333"/>
+        <image name="background3" width="6361" height="6720"/>
+        <image name="coffee" width="236" height="419"/>
         <image name="delete" width="100" height="100"/>
         <image name="edit" width="100" height="100"/>
         <image name="trash" width="100" height="100"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="vI4-tV-WVL"/>
+    </inferredMetricsTieBreakers>
 </document>

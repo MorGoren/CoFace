@@ -15,6 +15,7 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
     var flowLayout: CollectionFlowLayout!
     let frame = UIScreen.main.bounds
     var add: UIButton!
+    var font: Int!
     @IBOutlet weak var background: UIImageView!
     @objc func addAction() {
         ShowPopup()
@@ -22,15 +23,23 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
     @IBOutlet weak var collection: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        collection.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
-        backgroundSetup()
+        setFont()
+        add = addButton()
+        self.view.addSubview(add)
+        background.translatesAutoresizingMaskIntoConstraints = false
+        background.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        background.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        background.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        collection.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        collection.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        collection.bottomAnchor.constraint(equalTo: add.topAnchor).isActive = true
         flowLayout = CollectionFlowLayout()
-        flowLayout.numberOfItem = 3
+        flowLayout.numberOfItem = 2
         collection.collectionViewLayout = flowLayout
         categoriesList = BranchData.shared.categoryList
-        print("here is category list", categoriesList)
         collection?.reloadData()
-        self.view.addSubview(addButton())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,18 +64,28 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! categoryListUICell
-        cell.layer.borderColor = UIColor.brown.cgColor
-        cell.layer.borderWidth = 1
         let index = indexPath.row
         cell.cid = categoriesList[index].id
         cell.go = self
-        if cell.image != nil {
-            cell.label.text = categoriesList[index].name
-            cell.addButton.frame.size = CGSize(width: 50, height: 50)
-            print(cell.label.text as Any)
-            cell.imageURL = categoriesList[index].image
-            cell.image.sd_setImage(with: URL(string: cell.imageURL), placeholderImage: UIImage(named: "image")!)
-        }
+        cell.label.text = categoriesList[index].name
+        print(cell.label.text as Any)
+        cell.imageURL = categoriesList[index].image
+        cell.image.sd_setBackgroundImage(with: URL(string: cell.imageURL), for: .normal, completed: nil)
+        cell.addSubview(cell.image)
+        cell.addSubview(cell.label)
+        cell.image.translatesAutoresizingMaskIntoConstraints = false
+        cell.label.translatesAutoresizingMaskIntoConstraints = false
+        cell.image.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+        cell.image.heightAnchor.constraint(equalToConstant: cell.frame.height*0.9).isActive = true
+        cell.image.widthAnchor.constraint(equalToConstant: cell.frame.width).isActive = true
+        cell.label.topAnchor.constraint(equalTo: cell.image.bottomAnchor).isActive = true
+        cell.label.widthAnchor.constraint(equalToConstant: cell.frame.width).isActive = true
+        cell.label.heightAnchor.constraint(equalToConstant: cell.frame.height*0.1).isActive = true
+        cell.label.bottomAnchor.constraint(equalTo: cell.bottomAnchor).isActive = true
+        cell.label.textAlignment = .center
+        cell.label.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        cell.layer.borderColor = UIColor.brown.cgColor
+        cell.layer.borderWidth = 1
         return cell
     }
     
@@ -95,4 +114,22 @@ class CategoriesListView: UIViewController, UICollectionViewDataSource, refreshC
     func goBack() {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
+    }
+
 }

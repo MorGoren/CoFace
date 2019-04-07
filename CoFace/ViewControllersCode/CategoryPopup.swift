@@ -42,14 +42,15 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
 
-    var cancel: UIButton!
-    var add: UIButton!
-    var category: String!
-    var order: UILabel!
-    var name: UITextField!
-    var image: UIButton!
-    var popup: UIView!
+    var cancel = UIButton()
+    var add = UIButton()
+    var category = String()
+    var order = UILabel()
+    var name = UITextField()
+    var image =  UIButton()
+    var popup = UIView()
     var frame = UIScreen.main.bounds
+    var font: Int!
     @objc func addAction(_ sender: Any) {
         bluredEffect()
         if checkWhatEmpty() {
@@ -68,31 +69,58 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let x = frame.maxX/3
-        var y = frame.maxX/3
-        var width = y
+        setFont()
+        var width = frame.width/2
         let height = 1.2*width
-        popup = UIView(frame: CGRect(x: frame.maxX/3, y: frame.maxY/3, width: width, height: height))
-        popup.backgroundColor = UIColor.init(red: 253, green: 185, blue: 40, alpha: 0.80)
-        order = addLabel(text: "הקש לבחירת תמונה", place: CGRect(x: x, y: 1.3*y+height/10, width: width, height: height/20), font: 15)
-        order.textAlignment = .center
-        image = addButton(name: "image", place: CGRect(x: x, y: 1.3*y+height/20, width: width, height: height/2))
-        image.addTarget(self, action: #selector(imageAction), for: .touchUpInside)
-        y = image.frame.maxY
-        name = addTextField(fontSize: 15, placeholder: "פריט חדש", secure: false, place: CGRect(x: x, y: y, width: width, height: height/15))
-        y = y+height/10
-        width = height/5
-        add = addRoundButton(name: "add", place: CGRect(x: popup.frame.maxX-width, y: y, width: width, height: width))
-        add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
-        cancel = addRoundButton(name: "delete", place: CGRect(x: popup.frame.minX, y: y, width: width, height: width))
-        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+        popup.backgroundColor = UIColor.init(white: 1.0, alpha: 0.8)
         popup.layer.cornerRadius = 20
         self.view.addSubview(popup)
-        self.view.addSubview(image)
-        self.view.addSubview(order)
-        self.view.addSubview(name)
-        self.view.addSubview(add)
-        self.view.addSubview(cancel)
+        self.popup.addSubview(order)
+        self.popup.addSubview(image)
+        self.popup.addSubview(name)
+        self.popup.addSubview(add)
+        self.popup.addSubview(cancel)
+        popup.translatesAutoresizingMaskIntoConstraints = false
+        popup.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        popup.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        popup.widthAnchor.constraint(equalToConstant: width).isActive = true
+        popup.heightAnchor.constraint(equalToConstant: height).isActive = true
+        order.translatesAutoresizingMaskIntoConstraints = false
+        order.topAnchor.constraint(equalTo: popup.topAnchor).isActive = true
+        order.widthAnchor.constraint(equalToConstant: width).isActive = true
+        order.heightAnchor.constraint(equalToConstant: height/20).isActive = true
+        order.text = "הקש לבחירת תמונה"
+        order.textColor = .black
+        order.backgroundColor = .clear
+        order.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        order.textAlignment = .center
+        image.setImage(UIImage(named: "image"), for: .normal)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.topAnchor.constraint(equalTo: order.bottomAnchor).isActive = true
+        image.widthAnchor.constraint(equalToConstant: width).isActive = true
+        image.heightAnchor.constraint(equalToConstant: height/2).isActive = true
+        image.addTarget(self, action: #selector(imageAction), for: .touchUpInside)
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.topAnchor.constraint(equalTo: image.bottomAnchor, constant: height/20).isActive = true
+        name.placeholder = "שם פריט"
+        name.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        name.widthAnchor.constraint(equalTo: popup.widthAnchor).isActive = true
+        name.heightAnchor.constraint(equalToConstant: height/10)
+        name.textAlignment = .right
+        add.setImage(UIImage(named: "add"), for: .normal)
+        width = width/4
+        add.translatesAutoresizingMaskIntoConstraints = false
+        add.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
+        add.widthAnchor.constraint(equalToConstant: width).isActive = true
+        add.heightAnchor.constraint(equalToConstant: width).isActive = true
+        add.rightAnchor.constraint(equalTo: name.rightAnchor).isActive = true
+        add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
+        cancel.setImage(UIImage(named: "delete"), for: .normal)
+        cancel.translatesAutoresizingMaskIntoConstraints = false
+        cancel.topAnchor.constraint(equalTo: add.topAnchor).isActive = true
+        cancel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.heightAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     
     private func bluredEffect(){
@@ -105,7 +133,7 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     private func checkWhatEmpty()-> Bool{
-        if name != nil{
+        if name.text != nil{
             if image.imageView?.image != UIImage(named: "image"){
                 return true
             }
@@ -127,47 +155,21 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
         picker.dismiss(animated: true, completion: nil)
     }
     
-    private func addLabel(text: String, place: CGRect, font: Int) -> UILabel{
-        let label = UILabel(frame: place)
-        label.text = text
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
-        label.backgroundColor = UIColor.init(
-            white: CGFloat(1.0), alpha: CGFloat(0.80))
-        label.layer.cornerRadius = label.frame.height/2
-        return label
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
     }
-    
-    private func addButton(name: String, place: CGRect) -> UIButton{
-        let button = UIButton(frame: place)
-        button.setImage(UIImage(named: name), for: .normal)
-        button.backgroundColor = .clear
-        return button
-    }
-    private func addRoundButton(name: String, place: CGRect) -> UIButton{
-        let button = UIButton(frame: place)
-        button.setImage(UIImage(named: name), for: .normal)
-        button.layer.cornerRadius = button.frame.size.height/2
-        button.backgroundColor = .clear
-        return button
-    }
-    
-    private func addTextField(fontSize: Float, placeholder: String , secure: Bool, place: CGRect) -> UITextField{
-        let textField =  UITextField(frame: place)
-        textField.placeholder = placeholder
-        textField.font = UIFont.systemFont(ofSize: CGFloat(fontSize))
-        textField.borderStyle = UITextField.BorderStyle.roundedRect
-        textField.autocorrectionType = UITextAutocorrectionType.no
-        textField.keyboardType = UIKeyboardType.default
-        textField.returnKeyType = UIReturnKeyType.done
-        textField.textAlignment = .right
-        textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
-        textField.isSecureTextEntry = secure
-        textField.tag = 1
-        textField.layer.borderColor = UIColor.black.cgColor
-        textField.textColor = .black
-        textField.backgroundColor = UIColor.init(
-            white: CGFloat(1.0), alpha: CGFloat(0.56))
-        return textField
-    }
+
 }

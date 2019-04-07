@@ -10,9 +10,11 @@ import UIKit
 
 class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
     
+    @IBOutlet weak var background: UIImageView!
     var check: UIButton!
     var frame = UIScreen.main.bounds
-    @objc func checkAction(_ sender: Any) {
+    var once = 0
+    @objc func checkAction() {
         check.pulseAnimation()
         BranchData.shared.moveToReady(id: currentOrder)
         keys.removeFirst()
@@ -51,6 +53,14 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        background.translatesAutoresizingMaskIntoConstraints = false
+        background.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        background.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        background.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        collection.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
+        collection.heightAnchor.constraint(equalTo: view.heightAnchor).isActive = true
         check = addButton()
         check.isHidden = true
         flowLayout = CollectionFlowLayout()
@@ -59,6 +69,7 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
         collection.frame = CGRect(x: frame.minX, y: frame.minY, width: frame.width, height: frame.height)
         currentOrder = "nil"
         timerPreper()
+        keys = Array(orderList.keys)
         self.view.addSubview(check)
     }
     
@@ -88,7 +99,14 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collection.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OrderToDoUICell
         count += 1
-        print("my item", count, items)
+        if once == 0{
+            once = 1
+            cell.image.translatesAutoresizingMaskIntoConstraints = false
+            cell.image.topAnchor.constraint(equalTo: cell.topAnchor).isActive = true
+            cell.image.widthAnchor.constraint(equalTo: cell.widthAnchor).isActive = true
+            cell.image.heightAnchor.constraint(equalTo: cell.heightAnchor).isActive = true
+            print("my item", count, items)
+        }
         if cell.image != nil{
             let url = URL(string: items[indexPath.row].image)
             let image = UIImage(named: "image")

@@ -14,13 +14,14 @@ protocol cellDelete: class {
 
 class ItemUICell: UICollectionViewCell {
     
+    @IBOutlet weak var delete: UIButton!
     var id: String!
-    var delete: cellDelete?
+    var deleteAc: cellDelete?
     var imageURL: String!
     @IBOutlet weak var itemImage: UIImageView!
     @IBOutlet weak var itemLabel: UILabel!
     @IBAction func deleteAction(_ sender: Any) {
-        delete?.delete(cell: self)
+        deleteAc?.delete(cell: self)
     }
     
     override func prepareForReuse() {

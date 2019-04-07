@@ -165,6 +165,10 @@ class BranchData {
         
     }
     
+    func editGuest(guest : guestData){
+        
+    }
+    
     private func unwrap<T>(_ any: T) -> String
     {
         let mirror = Mirror(reflecting: any)

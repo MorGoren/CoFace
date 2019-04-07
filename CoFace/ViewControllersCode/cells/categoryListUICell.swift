@@ -15,9 +15,8 @@ class categoryListUICell: UICollectionViewCell {
     
     var go : back?
     var imageURL: String!
+    @IBOutlet weak var image: UIButton!
     @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var addButton: UIButton!
     @IBAction func addAction(_ sender: Any) {
         let category = ["name": self.label.text, "photoURL": imageURL]
         BranchData.shared.addCategory(category: category as [String : Any]) { check in
@@ -37,11 +36,6 @@ class categoryListUICell: UICollectionViewCell {
         super.prepareForReuse()
         self.cid = nil
         self.label.text = nil
-        self.image = nil
-        self.addButton.frame.size = CGSize(width: 50, height: 50)
-    }
-        
-    func printCell(){
-        print("category cell:", "name", self.label.text!, "id", self.cid)
+        self.image.imageView?.image = nil
     }
 }

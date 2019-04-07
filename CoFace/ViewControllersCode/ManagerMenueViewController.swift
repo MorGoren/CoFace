@@ -21,45 +21,100 @@ class ManagerMenue: UIViewController {
         menu.pulseAnimation()
         performSegue(withIdentifier: "menu", sender: self)
     }
+    
     @objc func guestAction() {
         guest.pulseAnimation()
         performSegue(withIdentifier: "guest", sender: self)
     }
     
-    var activity: UIButton!
-    var menu: UIButton!
-    var guest: UIButton!
-    var acLabel: UILabel!
-    var meLabel: UILabel!
-    var guLabel: UILabel!
+    @objc func logout(){
+        try! Auth.auth().signOut()
+        self.view.removeFromSuperview()
+        let MainStoryboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        guard let MainNavigationVC = MainStoryboard.instantiateViewController(withIdentifier: "ViewController") as? ViewController
+            else{return}
+        //MainNavigationVC.topViewController
+        present(MainNavigationVC, animated: true, completion: nil)
+    }
     
+    var activity = UIButton()
+    var menu = UIButton()
+    var guest =  UIButton()
+    var acLabel = UILabel()
+    var meLabel =  UILabel()
+    var guLabel = UILabel()
+    var font: Int!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setFont()
         let frame = UIScreen.main.bounds
-        let size = UIScreen.main.bounds.height/6
-        let x = frame.midX - size/2
-        var y = size/2
-        activity = addButton(name: "restaurantIcon", place: CGRect(x: x, y: CGFloat(y), width: CGFloat(size), height: CGFloat(size)))
-        let ly = size*1.1
-        acLabel = addLabel(text: "התחל פעילות", place: CGRect(x: x, y: y+ly, width: size + 50, height: size/3))
-        acLabel.textAlignment = .center
-        y = 2.2*size
-        menu = addButton(name: "menuIcon", place: CGRect(x: x, y: y, width: size, height: size))
-        meLabel = addLabel(text: "תפריט", place: CGRect(x: x, y: y+ly , width: size, height: size/3))
-        meLabel.textAlignment = .center
-        y = 3.3*size
-        guest = addButton(name: "guestlist", place: CGRect(x: x, y: y+0.5*ly, width: size, height: size))
-        guLabel = addLabel(text: "רשימת אורחים", place: CGRect(x: x, y: y+1.5*ly, width: size*1.5, height: size/3))
-        guLabel.textAlignment = .center
-         activity.addTarget(self, action: #selector(startAction), for: .touchUpInside)
-         menu.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
-         guest.addTarget(self, action: #selector(guestAction), for: .touchUpInside)
+        let size = frame.height/6
+        //activity = addButton(name: "restaurantIcon", place: CGRect(x: x, y: CGFloat(y), width: CGFloat(size), height: CGFloat(size)))
         self.view.addSubview(activity)
         self.view.addSubview(acLabel)
         self.view.addSubview(menu)
         self.view.addSubview(meLabel)
-        self.view.addSubview(guest)
         self.view.addSubview(guLabel)
+        self.view.addSubview(guest)
+        activity.setImage(UIImage(named: "restaurantIcon"), for: .normal)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.topAnchor.constraint(equalTo: view.topAnchor, constant: 100).isActive = true
+        activity.widthAnchor.constraint(equalToConstant: size).isActive = true
+        activity.heightAnchor.constraint(equalToConstant: size).isActive = true
+        //self.navigationItem.titleView!.bottomAnchor
+        activity.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        acLabel.text = "התחל פעילות"
+        acLabel.textAlignment = .center
+        acLabel.textColor = .black
+        acLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        acLabel.textColor = UIColor.black
+        acLabel.textAlignment = .center
+        acLabel.translatesAutoresizingMaskIntoConstraints = false
+        acLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        acLabel.topAnchor.constraint(equalTo: activity.bottomAnchor).isActive = true
+        acLabel.widthAnchor.constraint(equalToConstant: 1.5*size).isActive = true
+        acLabel.heightAnchor.constraint(equalToConstant: 0.2*size).isActive = true
+        acLabel.layer.cornerRadius = 20
+        menu.setImage(UIImage(named: "menuIcon"), for: .normal)
+        menu.translatesAutoresizingMaskIntoConstraints = false
+        menu.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        menu.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        menu.widthAnchor.constraint(equalToConstant: size).isActive = true
+        menu.heightAnchor.constraint(equalToConstant: size).isActive = true
+        meLabel.text = "תפריט"
+        meLabel.textAlignment = .center
+        meLabel.textColor = .black
+        meLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        meLabel.textColor = UIColor.black
+        meLabel.textAlignment = .center
+        meLabel.translatesAutoresizingMaskIntoConstraints = false
+        meLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        meLabel.topAnchor.constraint(equalTo: menu.bottomAnchor).isActive = true
+        meLabel.widthAnchor.constraint(equalToConstant: 1.5*size).isActive = true
+        meLabel.heightAnchor.constraint(equalToConstant: 0.2*size).isActive = true
+        meLabel.layer.cornerRadius = 20
+        guLabel.text = "רשימת אורחים"
+        guLabel.textAlignment = .center
+        guLabel.textColor = .black
+        guLabel.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        guLabel.textColor = UIColor.black
+        guLabel.textAlignment = .center
+        guLabel.translatesAutoresizingMaskIntoConstraints = false
+        guLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        guLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+        guLabel.widthAnchor.constraint(equalToConstant: 1.5*size).isActive = true
+        guLabel.heightAnchor.constraint(equalToConstant: 0.2*size).isActive = true
+        guLabel.layer.cornerRadius = 20
+        guest.setImage(UIImage(named: "guestlist"), for: .normal)
+        guest.translatesAutoresizingMaskIntoConstraints = false
+        guest.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        guest.bottomAnchor.constraint(equalTo: guLabel.topAnchor).isActive = true
+        guest.widthAnchor.constraint(equalToConstant: size).isActive = true
+        guest.heightAnchor.constraint(equalToConstant: size).isActive = true
+        guLabel.textAlignment = .center
+         activity.addTarget(self, action: #selector(startAction), for: .touchUpInside)
+         menu.addTarget(self, action: #selector(menuAction), for: .touchUpInside)
+         guest.addTarget(self, action: #selector(guestAction), for: .touchUpInside)
          self.navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: nil)
         self.navigationController?.navigationBar.isHidden = false
         BackgroundSetup()
@@ -69,27 +124,28 @@ class ManagerMenue: UIViewController {
         let backButton = UIBarButtonItem()
         backButton.title = "אחורה"
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        // navigation bar
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "התנתק", style: .plain, target: self, action: #selector(logout))
     }
     
     private func BackgroundSetup(){
         BackgroundImage.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
     
-    private func addButton(name: String, place: CGRect) -> UIButton{
-        let button = UIButton(frame: place)
-        button.setImage(UIImage(named: name), for: .normal)
-        button.layer.cornerRadius = button.frame.size.height / 2
-        button.backgroundColor = .clear
-        return button
-    }
-    
-    private func addLabel(text: String, place: CGRect) -> UILabel{
-        let label = UILabel(frame: place)
-        label.text = text
-        label.textColor = .black
-        label.font = UIFont.boldSystemFont(ofSize: CGFloat(40))
-        label.backgroundColor = UIColor.init(white: CGFloat(1.0), alpha: CGFloat(0.56))
-        label.layer.cornerRadius = place.height/2
-        return label
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
     }
 }
