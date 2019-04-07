@@ -14,12 +14,17 @@ protocol refresh: class {
 class ItemPopup: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var re: refresh?
-    @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var add: UIButton!
-    var category: String!
-    @IBOutlet weak var name: RoundTextField!
-    @IBOutlet weak var image: UIButton!
-    @IBAction func imageAction(_ sender: Any) {
+    var cancel = UIButton()
+    var add = UIButton()
+    var category = String()
+    var order = UILabel()
+    var name = UITextField()
+    var image =  UIButton()
+    var popup = UIView()
+    var frame = UIScreen.main.bounds
+    var font: Int!
+    
+    @objc func imageAction() {
         let imagePicketController = UIImagePickerController()
         imagePicketController.delegate = self
         let actionSheet = UIAlertController(title: "Photo Source", message: nil, preferredStyle: .actionSheet)
@@ -41,7 +46,7 @@ class ItemPopup: UIViewController, UIImagePickerControllerDelegate, UINavigation
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBAction func addAction(_ sender: Any) {
+    @objc func addAction() {
         bluredEffect()
         if whatEmpty(){
             BranchData.shared.addItem(category: category, item: ["name": name.text as Any], image: (image.imageView?.image)!) { check in
@@ -56,13 +61,64 @@ class ItemPopup: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
-    @IBAction func cancel(_ sender: Any) {
+    @objc func cancelAction() {
         self.view.removeFromSuperview()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        cancelButton.isHidden = false
+        setFont()
+        var width = frame.width/2
+        let height = 1.2*width
+        popup.backgroundColor = UIColor.init(white: 1.0, alpha: 0.8)
+        popup.layer.cornerRadius = 20
+        self.view.addSubview(popup)
+        self.popup.addSubview(order)
+        self.popup.addSubview(image)
+        self.popup.addSubview(name)
+        self.popup.addSubview(add)
+        self.popup.addSubview(cancel)
+        popup.translatesAutoresizingMaskIntoConstraints = false
+        popup.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        popup.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        popup.widthAnchor.constraint(equalToConstant: width).isActive = true
+        popup.heightAnchor.constraint(equalToConstant: height).isActive = true
+        order.translatesAutoresizingMaskIntoConstraints = false
+        order.topAnchor.constraint(equalTo: popup.topAnchor).isActive = true
+        order.widthAnchor.constraint(equalToConstant: width).isActive = true
+        order.heightAnchor.constraint(equalToConstant: height/20).isActive = true
+        order.text = "הקש לבחירת תמונה"
+        order.textColor = .black
+        order.backgroundColor = .clear
+        order.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        order.textAlignment = .center
+        image.setImage(UIImage(named: "image"), for: .normal)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.topAnchor.constraint(equalTo: order.bottomAnchor).isActive = true
+        image.widthAnchor.constraint(equalToConstant: width).isActive = true
+        image.heightAnchor.constraint(equalToConstant: height/2).isActive = true
+        image.addTarget(self, action: #selector(imageAction), for: .touchUpInside)
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.topAnchor.constraint(equalTo: image.bottomAnchor, constant: height/20).isActive = true
+        name.placeholder = "שם פריט"
+        name.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        name.widthAnchor.constraint(equalTo: popup.widthAnchor).isActive = true
+        name.heightAnchor.constraint(equalToConstant: height/10)
+        name.textAlignment = .right
+        add.setImage(UIImage(named: "add"), for: .normal)
+        width = width/4
+        add.translatesAutoresizingMaskIntoConstraints = false
+        add.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
+        add.widthAnchor.constraint(equalToConstant: width).isActive = true
+        add.heightAnchor.constraint(equalToConstant: width).isActive = true
+        add.rightAnchor.constraint(equalTo: name.rightAnchor).isActive = true
+        add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
+        cancel.setImage(UIImage(named: "delete"), for: .normal)
+        cancel.translatesAutoresizingMaskIntoConstraints = false
+        cancel.topAnchor.constraint(equalTo: add.topAnchor).isActive = true
+        cancel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.heightAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     
     private func whatEmpty()->Bool{
@@ -96,4 +152,22 @@ class ItemPopup: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
+    }
+
 }

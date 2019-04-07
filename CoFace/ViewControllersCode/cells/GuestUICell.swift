@@ -13,6 +13,8 @@ protocol cellDeleteDelegate: class{
 }
 class GuestUICell: UICollectionViewCell {
     
+    @IBOutlet weak var edit: UIButton!
+    @IBOutlet weak var trash: UIButton!
     var cid: String!
     var imageURL: URL!
     @IBOutlet weak var image: UIImageView!
@@ -37,14 +39,5 @@ class GuestUICell: UICollectionViewCell {
         self.eyeImage = nil
         self.cid = nil
         self.imageURL = nil
-    }
-    
-    func printCell(){
-        print("self.image",self.image,
-            "self.firstNameLabel", self.firstNameLabel,
-            "self.lastNameLabel", self.lastNameLabel,
-            "self.eyeImage", self.eyeImage,
-            "self.cid", self.cid,
-            "self.imageURL", self.imageURL)
     }
 }

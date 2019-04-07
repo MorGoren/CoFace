@@ -34,8 +34,4 @@ class CategoryUICell: UICollectionViewCell {
         self.categoryLabel.text = nil
         self.categoryImage.image = nil
     }
-    
-    func printCell(){
-        print("category cell:", "name", self.categoryLabel.text!, "id", self.cid)
-    }
 }

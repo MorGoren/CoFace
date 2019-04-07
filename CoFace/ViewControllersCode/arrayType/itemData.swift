@@ -17,8 +17,8 @@ struct itemData{
     
     init(data: [String: Any], id: String) {
         self.id = id
-        self.image = data["photoURL"] as? String
         self.name = data["name"] as? String
+        self.image = data["photoURL"] as? String
     }
     
     init (snapshot: DataSnapshot){

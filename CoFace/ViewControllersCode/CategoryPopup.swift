@@ -16,11 +16,10 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     var cat = BranchData.shared.categoryList
     var re : refreshCollection?
 
-    @IBAction func cancelAction(_ sender: Any) {
+    @objc func cancelAction(_ sender: Any) {
         self.view.removeFromSuperview()
     }
-    @IBOutlet weak var categoryButton: UIButton!
-    @IBAction func ImageAction(_ sender: Any) {
+    @objc func imageAction(_ sender: Any) {
         let imagePicketController = UIImagePickerController()
         imagePicketController.delegate = self
         let actionSheet = UIAlertController(title: "Photo Source", message: nil, preferredStyle: .actionSheet)
@@ -42,13 +41,21 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
         self.present(actionSheet, animated: true, completion: nil)
     }
     
-    @IBOutlet weak var categoryName: RoundTextField!
-    @IBOutlet weak var add: UIButton!
-    @IBAction func addAction(_ sender: Any) {
+
+    var cancel = UIButton()
+    var add = UIButton()
+    var category = String()
+    var order = UILabel()
+    var name = UITextField()
+    var image =  UIButton()
+    var popup = UIView()
+    var frame = UIScreen.main.bounds
+    var font: Int!
+    @objc func addAction(_ sender: Any) {
         bluredEffect()
         if checkWhatEmpty() {
-            let new = ["name": categoryName.text]
-            BranchData.shared.addCategoryList(category: new as [String : Any], image: categoryButton.currentImage! , completion: {check in
+            let new = ["name": name.text]
+            BranchData.shared.addCategoryList(category: new as [String : Any], image: image.currentImage! , completion: {check in
                 if check != "no"{
                     self.re?.refresh()
                     self.view.removeFromSuperview()
@@ -62,11 +69,58 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Setup()
-    }
-    
-    private func Setup(){
-        add.frame.size = CGSize(width: 50, height: 50)
+        setFont()
+        var width = frame.width/2
+        let height = 1.2*width
+        popup.backgroundColor = UIColor.init(white: 1.0, alpha: 0.8)
+        popup.layer.cornerRadius = 20
+        self.view.addSubview(popup)
+        self.popup.addSubview(order)
+        self.popup.addSubview(image)
+        self.popup.addSubview(name)
+        self.popup.addSubview(add)
+        self.popup.addSubview(cancel)
+        popup.translatesAutoresizingMaskIntoConstraints = false
+        popup.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        popup.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        popup.widthAnchor.constraint(equalToConstant: width).isActive = true
+        popup.heightAnchor.constraint(equalToConstant: height).isActive = true
+        order.translatesAutoresizingMaskIntoConstraints = false
+        order.topAnchor.constraint(equalTo: popup.topAnchor).isActive = true
+        order.widthAnchor.constraint(equalToConstant: width).isActive = true
+        order.heightAnchor.constraint(equalToConstant: height/20).isActive = true
+        order.text = "הקש לבחירת תמונה"
+        order.textColor = .black
+        order.backgroundColor = .clear
+        order.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        order.textAlignment = .center
+        image.setImage(UIImage(named: "image"), for: .normal)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.topAnchor.constraint(equalTo: order.bottomAnchor).isActive = true
+        image.widthAnchor.constraint(equalToConstant: width).isActive = true
+        image.heightAnchor.constraint(equalToConstant: height/2).isActive = true
+        image.addTarget(self, action: #selector(imageAction), for: .touchUpInside)
+        name.translatesAutoresizingMaskIntoConstraints = false
+        name.topAnchor.constraint(equalTo: image.bottomAnchor, constant: height/20).isActive = true
+        name.placeholder = "שם פריט"
+        name.font = UIFont.boldSystemFont(ofSize: CGFloat(font))
+        name.widthAnchor.constraint(equalTo: popup.widthAnchor).isActive = true
+        name.heightAnchor.constraint(equalToConstant: height/10)
+        name.textAlignment = .right
+        add.setImage(UIImage(named: "add"), for: .normal)
+        width = width/4
+        add.translatesAutoresizingMaskIntoConstraints = false
+        add.topAnchor.constraint(equalTo: name.bottomAnchor).isActive = true
+        add.widthAnchor.constraint(equalToConstant: width).isActive = true
+        add.heightAnchor.constraint(equalToConstant: width).isActive = true
+        add.rightAnchor.constraint(equalTo: name.rightAnchor).isActive = true
+        add.addTarget(self, action: #selector(addAction), for: .touchUpInside)
+        cancel.setImage(UIImage(named: "delete"), for: .normal)
+        cancel.translatesAutoresizingMaskIntoConstraints = false
+        cancel.topAnchor.constraint(equalTo: add.topAnchor).isActive = true
+        cancel.widthAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.heightAnchor.constraint(equalToConstant: width).isActive = true
+        cancel.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
     }
     
     private func bluredEffect(){
@@ -79,8 +133,8 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     private func checkWhatEmpty()-> Bool{
-        if categoryName != nil{
-            if categoryButton.imageView?.image != UIImage(named: "image"){
+        if name.text != nil{
+            if image.imageView?.image != UIImage(named: "image"){
                 return true
             }
             return false
@@ -94,10 +148,28 @@ class CategoryPopup: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage{
-            categoryButton.setImage(pickedImage, for: .normal)
-            categoryButton.layer.borderWidth = 10
-            categoryButton.layer.borderColor = UIColor.black.cgColor
+            image.setImage(pickedImage, for: .normal)
+            image.layer.borderWidth = 10
+            image.layer.borderColor = UIColor.black.cgColor
         }
         picker.dismiss(animated: true, completion: nil)
     }
+    
+    private func setFont(){
+        switch UIDevice.current.userInterfaceIdiom {
+        case .phone:
+            font = 15
+        case .pad:
+            font = 25
+        case .unspecified:
+            font = 25
+        case .tv:
+            font = 25
+        case .carPlay:
+            font = 15
+        @unknown default:
+            font = 25
+        }
+    }
+
 }

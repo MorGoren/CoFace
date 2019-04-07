@@ -8,19 +8,15 @@
 
 import UIKit
 
-protocol returnOrder: class {
-    func add(cell: CheckCell)
-}
-
 class CheckCell: UICollectionViewCell {
-    @IBAction func checkOrder(_ sender: Any) {
-        
-    }
-    @IBOutlet weak var image: UIButton!
+    
+    @IBOutlet weak var image: UIImageView!
     var id: String!
-    var returnPro: returnOrder?
+    var index: IndexPath!
+    
     override func prepareForReuse() {
         self.image = nil
         self.id = nil
+        self.index = nil
     }
 }

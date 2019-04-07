@@ -9,10 +9,14 @@
 import UIKit
 
 class OrderCell: UICollectionViewCell {
+    
     @IBOutlet weak var image: UIImageView!
-    var itemID: String!
+    var id: String!
+    var index: IndexPath!
+    
     override func prepareForReuse() {
         self.image.image = nil
-        self.itemID = nil
+        self.id = nil
+        self.index = nil 
     }
 }
