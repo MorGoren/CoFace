@@ -304,6 +304,44 @@ class BranchData {
         return "no"
     }
     
+    func nextOrder(dictionay: [String: [itemData]], cid: String, completion: @escaping ((_ order: [itemData], _ orderid: String)->())){
+        print("you are in nextOrder")
+        databaseRef = Database.database().reference()
+        databaseRef.root.child("OrderToDo").child(branch).observe(.value, with: { snapshot in
+            for nd in snapshot.children {
+                let snap = nd as! DataSnapshot
+                if dictionay[snap.key] == nil {
+                    //print("snapsnap", snap)
+                    var newData = [itemData]()
+                    for item in snap.children{
+                        //print("item in order", item)
+                        newData.append(itemData(snapshot: item as! DataSnapshot))
+                    }
+                    completion(newData, snap.key)
+                }
+            }
+        })
+    }
+    
+    func moveToReady(id: String){
+        databaseRef = Database.database().reference()
+        let url = ["photoURL": getImage(id: id)]
+        databaseRef.root.child("OrderReady").child(branch).child(id).setValue(url)
+    }
+    
+    func removeFromOrder(id: String){
+        removeFromDatabase(path: "OrderToDo/\(branch ?? "dfult")/\(id)")
+    }
+    
+    private func getImage(id : String) -> String{
+        for guest in guestInfo{
+            if id == guest.cid{
+                return guest.image
+            }
+        }
+        return "nil"
+    }
+    
     private func removeFromDatabase(path: String){
         databaseRef = Database.database().reference()
         databaseRef.child(path).removeValue()

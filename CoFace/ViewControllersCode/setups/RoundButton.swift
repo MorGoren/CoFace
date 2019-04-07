@@ -14,6 +14,7 @@ class RoundButton: UIButton{
         super.awakeFromNib()
         layer.borderWidth = 4/UIScreen.main.nativeScale
         layer.cornerRadius = frame.height/2
+        frame.size = CGSize(width: 200, height: 50)
     }
     
     func changeLook(bool: Bool){

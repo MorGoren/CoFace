@@ -42,6 +42,7 @@ class OrderToDoCollection: UIViewController, UICollectionViewDataSource {
             
         }
     }
+    
     @IBOutlet weak var collection: UICollectionView!
     var timer =  Timer()
     var orderList = [String: [itemData]]()

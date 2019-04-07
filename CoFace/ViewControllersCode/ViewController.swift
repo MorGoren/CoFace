@@ -288,14 +288,14 @@ class ViewController: UIViewController, UITextFieldDelegate{
     
      private func loginTrigger(){
         CheckLogin(completion: { check in
-                if check == true{
+                if check == true  {
                     BranchData.shared.getID(email: self.email.text?.lowercased() ?? "defult", completion: { check in
                         if check == true{
                             self.NavigateToManagerMenu()
                         }
                     })
                 }
-            else {
+                else {
                 self.warning.text = "oop! something is not right"
                 self.warning.isHidden = false
             }
@@ -326,9 +326,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
         guard let MainNavigationVC = MainStoryboard.instantiateViewController(withIdentifier: "Activity") as? StartView else{return}
         //MainNavigationVC.topViewController
         present(MainNavigationVC, animated: true, completion: nil)
-
-    }
-    
+}
     private func CleanField(){
         email.text = ""
         city.text = ""
@@ -388,8 +386,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
             answer = false
         }
         return answer
-    }
-    
+}
+
     private func SWhatEmpty() -> Bool{
         var answer = true
         warning.text = "The following fields can't be empty: \n"
@@ -451,7 +449,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
                 completion(false)
             }
         }
-    }
+}
     
     private func randomCode() -> String {
         let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
@@ -484,8 +482,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
             font = 25
         }
     }
-    
 }
+
 
 extension String {
     func isValidEmail() -> Bool {
